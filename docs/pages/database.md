@@ -63,4 +63,53 @@ SHOW DATABASES \G;
 SELECT col FROM db \G;
 ```
 
+### Altering
+
+``` sql
+-- alter column type
+-- doesn't replace unless type incompatible
+use <db-name>;
+alter table <tablename> modify column <columname> <typename>;
+```
+
+## Backing Up
+
+There's two types of backups.
+
+- Logical Backup
+- Physical Backup
+
+### Physical
+
+This is basically copying the base sql directory after stopping sql.
+
+### Logical
+
+To backup;
+
+``` bash
+# scripts
+mysqldump -u <username> -p"<pass>" <db-name> > /path/to/file.sql
+
+# shell
+mysqldump -u <username> -p <db-name> > /path/to/file.sql
+
+# full db backup
+mysqldump -u root -p --all-databases > ./mariadb.dump
+```
+
+!!! warning ""
+    Try not to use the root user as much as possible. Except when making full db backups. Use a user who has deligated access to the database that is to be backed up.
+
+
+To import;
+
+``` bash
+# first create db in mysql
+# then import data to it
+
+mysql <db-name> < /path/to/file.sql
+```
+
+
 [^1]: https://www.digitalocean.com/community/tutorials/how-to-install-mariadb-on-ubuntu-20-04

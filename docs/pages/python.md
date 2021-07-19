@@ -26,3 +26,12 @@ pipreqs .
 >>> padded
 # Three 002
 ```
+
+## Remove Whitespace
+
+``` py
+>>> text = "  we are   god   "
+>>> formatted = "".join(text.split())
+>>> formatted
+# wearegod
+```

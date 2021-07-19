@@ -13,6 +13,8 @@ theme:
     icon:
         repo: fontawesome/brands/github
     logo: assets/logo.png
+    features:
+        - navigation.top
 
 
 markdown_extensions:
@@ -81,4 +83,5 @@ nav:
         - DuckDuckGo:   pages/duckduckgo.md
         - RegEx:        pages/regex.md
         - GContacts:    pages/gcontacts.md
+        - Mock Data:    pages/mockdata.md
 

@@ -61,7 +61,7 @@ Add a user to sudoers
 usermod -a -G sudo <username>
 ```
 
-### Whitelisting
+## Whitelisting
 
 Whitelisting a command or set of commands for a group allows anyone who's in it to run them without `sudo`. This is done by creating a new file inside of `/etc/sudoers.d`[^2].
 
@@ -162,6 +162,7 @@ gpg --output <public.pgp> --armor --export -r <recipient>
 # private key
 gpg --output <private.pgp> --armor --export-secret-key -r <recipient>
 ```
+
 
 [^1]: https://ubuntuforums.org/showthread.php?t=1702833
 [^2]: https://askubuntu.com/questions/930768/adding-local-content-in-etc-sudoers-d-instead-of-directly-modifying-sodoers-fi

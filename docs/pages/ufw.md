@@ -15,7 +15,7 @@ ports=25,465,587,110,995,143,993/tcp
 ```
 
 !!! example ""
-    - OpenSSH - 7777
+    - OpenSSH - 22
     - Nginx - 80, 443
     - SMTP Ports - 587
 
