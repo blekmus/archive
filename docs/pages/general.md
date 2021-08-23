@@ -163,8 +163,21 @@ gpg --output <public.pgp> --armor --export -r <recipient>
 gpg --output <private.pgp> --armor --export-secret-key -r <recipient>
 ```
 
+## Tar
+
+Compress a file into zst. You need `zstd` installed.
+
+``` bash
+tar acf files.tar.zst files/
+```
+
+Decompress a file from zst
+
+``` bash
+tar axf files.tar.zst
+```
 
 [^1]: https://ubuntuforums.org/showthread.php?t=1702833
 [^2]: https://askubuntu.com/questions/930768/adding-local-content-in-etc-sudoers-d-instead-of-directly-modifying-sodoers-fi
 [^3]: https://askubuntu.com/questions/692701/allowing-user-to-run-systemctl-systemd-services-without-password
-[^4]:https://wiki.archlinux.org/title/Fonts#Manual_installation
+[^4]: https://wiki.archlinux.org/title/Fonts#Manual_installation

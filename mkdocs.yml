@@ -76,12 +76,14 @@ nav:
         - Flask:        pages/flask.md
         - Nginx:        pages/nginx.md
         - Apache:       pages/apache.md
+        - React:        pages/react-js.md
     - Languages:
         - Python:       pages/python.md
         - Javascript:   pages/javascript.md
+        - CSS:          pages/css.md
     - Other:
         - DuckDuckGo:   pages/duckduckgo.md
         - RegEx:        pages/regex.md
-        - GContacts:    pages/gcontacts.md
         - Mock Data:    pages/mockdata.md
+        - GCalendar:   pages/gcalendar.md
 
