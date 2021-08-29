@@ -18,6 +18,9 @@ awk '{print $<col_num>}'
 
 # info about a pid
 ps -Flww -p <pid>
+
+# usernames used for logins
+sudo lastb | awk '{print $1}' | sort | uniq -c | sort -nr
 ```
 
 ## Site Permissions
