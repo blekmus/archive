@@ -21,6 +21,9 @@ ps -Flww -p <pid>
 
 # usernames used for logins
 sudo lastb | awk '{print $1}' | sort | uniq -c | sort -nr
+
+# switch between last cd's
+cd -
 ```
 
 ## Site Permissions
@@ -180,7 +183,18 @@ Decompress a file from zst
 tar axf files.tar.zst
 ```
 
+## WSL
+
+If this error comes up `[process exited with code 4294967295]` run this[^5].
+If the installed distro is different simply change it. 
+
+``` cmd
+wsl --terminate Ubuntu-20.04
+```
+
+
 [^1]: https://ubuntuforums.org/showthread.php?t=1702833
 [^2]: https://askubuntu.com/questions/930768/adding-local-content-in-etc-sudoers-d-instead-of-directly-modifying-sodoers-fi
 [^3]: https://askubuntu.com/questions/692701/allowing-user-to-run-systemctl-systemd-services-without-password
 [^4]: https://wiki.archlinux.org/title/Fonts#Manual_installation
+[^5]: https://github.com/microsoft/WSL/issues/5092

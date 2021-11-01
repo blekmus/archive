@@ -2,12 +2,11 @@
 
 ## What is this?
 
-This is basically [my](https://github.com/blekmus) unix and everything techy knowledge base. I made this to help lessen the blow on my retarded memory retention abilities. 
+This is basically [my](https://github.com/blekmus) unix and everything techy knowledge base. 
+I made this to help lessen the blow from my retarded memory retention abilities.
 
-This is hosted on Github Pages and is built using [MkDocs](https://github.com/mkdocs/mkdocs) with a customized theme based off of the superb [Material](https://github.com/squidfunk/mkdocs-material) theme.
-
-If you're viewing this and feel like I've made a mistake. Please click that repo icon and shoot me a pull request. I'd appreciate any help.
-
+The site is hosted on Github Pages and is built using [MkDocs](https://github.com/mkdocs/mkdocs). 
+With a customized theme based off of the superb [Mkdocs-Material](https://github.com/squidfunk/mkdocs-material) theme.
 
 ## Sites
 

@@ -11,18 +11,36 @@ To stage a file is simply to prepare it finely for a commit. Git, with its index
 
 ## Userful Commands
 
-```bash
-# forgets last commit and stages those files, keeps local changes
+``` shell
+# forgets last local commit, stages those changes, local files are unchanged
 git reset --soft origin
 
-# forgets last commit, destroy local changes
+# forgets last local commit, destroy all local changes, till last origin commit
 git reset --hard origin
 
 # forget staged changes, local files are unchanged
 git restore --staged .
+
+
+# forget staged changes for file, local files are unchanged
+git reset <file-name>
+
+# destroy all changes of file, back to last local/origin commit
+git restore <flie-name>
+
+# forget staged changes for file, local file is unchanged
+git restore --staged <file-name>
 ```
 
-```bash
+``` shell
+# files changed after last staging or commit
+git diff --stat
+
+# above less verbose
+git diff --name-only
+```
+
+``` shell
 # last commits
 git log --graph
 
@@ -40,11 +58,8 @@ git status -s
 ```
 
 ``` bash
-# files changed after last staging or commit
-git diff --stat
-
-# above less verbose
-git diff --name-only
+# edit local commit message
+git commit --amend
 ```
 
 ### Rollback Changes
@@ -59,6 +74,51 @@ git clean -fdx
 
 # sync to latest
 git pull
+```
+
+## Gitignore
+
+The below excludes all files except the files inside of and the /vendor/laravel/ui dir itself.
+It's mainly about ignoring files in a directory. Then not-ignoring selected directories inside of it. [Source](https://gist.github.com/hieblmedia/9318457)
+
+Remember `/vendor/*` != `/vendor/`. The former keeps the `/vendor/` folder but ignores files inside of it.
+The latter ignores the whole `/vendor/` directory. 
+
+``` gitignore
+# ignore everything inside /vendor/ but not dir itself
+/vendor/*
+
+# don't ignore /vendor/laravel dir and files inside of it
+!/vendor/laravel/
+
+# ignore every file inside /vendor/laravel dir, but not dir itself
+/vendor/laravel/*
+
+# don't ignore /vendor/laravel/ui dir and files inside of it
+!/vendor/laravel/ui
+
+```
+
+## Existing Project to Git
+
+[Source](https://gist.github.com/alexpchin/102854243cd066f8b88e)
+
+```
+# first init
+git init
+
+# stage local changes
+git add .
+
+# commit local changes
+git commit -m 'initial'
+
+# connect to origin, use url from github repo
+git remote add origin <url>
+git remote -v
+
+# finally push to origin, check origin name (master/main) from github
+git push origin <origin-name>
 ```
 
 ## Local SSH

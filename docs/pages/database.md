@@ -1,6 +1,6 @@
 ## Setup
 
-Install MariaDB and run the initial setup script[^1]
+Install MariaDB and run the initial setup script[^1]. Default port is `3306`.
 
 ``` bash
 sudo apt update
@@ -8,9 +8,9 @@ sudo apt install mariadb-server
 sudo mysql_secure_installation
 ```
 
-## Usual Process
+## Useful Commands
 
-Create db and give the `<username>` user access to the `<db-name>` db[^1].
+### Creating
 
 ``` sql
 -- create db
@@ -26,7 +26,18 @@ GRANT ALL PRIVILEGES ON <db-name>.* TO '<username>'@localhost;
 FLUSH PRIVILEGES;
 ```
 
-## Useful Commands
+``` sql
+-- select db
+USE <db-name>;
+
+-- create table
+CREATE table <table-name> (
+    id int NOT NULL AUTO_INCREMENT,
+    first int NOT NULL,
+    second varchar(191) NOT NULL,
+    PRIMARY KEY (id)
+);
+```
 
 ### Deleting
 
@@ -35,27 +46,39 @@ FLUSH PRIVILEGES;
 DROP USER '<user-name>'@localhost;
 
 -- drop database
-DROP DATABASE <db-name>
+DROP DATABASE <db-name>;
 ```
 
-### Checking
+### Displaying
 
 ``` sql
 -- display users
 SELECT User FROM mysql.user;
 
--- display privileges
-SHOW GRANTS FOR '<username>'@localhost;
-
 -- display databases
 SHOW DATABASES;
 
--- display columns of table
-DESC db.table;
-SHOW COLUMNS FROM db.table;
+-- display tables
+USE <db-name>;
+SHOW TABLES;
 ```
 
-### Displaying
+``` sql
+-- display privileges of user
+SHOW GRANTS FOR '<username>'@localhost;
+```
+
+``` sql
+-- display table columns
+DESC <db-name>.<table-name>;
+SHOW COLUMNS FROM <db-name>.<table-name>;
+
+-- display table columns of selected table
+DESC <table-name>;
+SHOW COLUMNS FROM <table-name>;
+```
+
+### Display Formats
 
 ``` sql
 -- display vertically
@@ -67,7 +90,7 @@ SELECT col FROM db \G;
 
 ``` sql
 -- alter column type
--- doesn't replace unless type incompatible
+-- doesn't replace unless values in colums are compatible
 use <db-name>;
 alter table <tablename> modify column <columname> <typename>;
 ```
