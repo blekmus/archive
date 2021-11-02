@@ -9,71 +9,74 @@ To stage a file is simply to prepare it finely for a commit. Git, with its index
 - When committing, changes are moved from the staging basket into the commit basket.
 - When soft resetting, committed changes are moved from the commit basket to the staging basket.
 
+### Untracked
+
+New files and directories that don't yet exist on any commit. They are out of the whole loop. Even after they're staged. Until a commit is made. They're considered untracked files.
+
+
 ## Userful Commands
 
 ``` shell
-# forgets last local commit, stages those changes, local files are unchanged
-git reset --soft origin
+# dislay current selected detached or attached branch
+git branch
 
-# forgets last local commit, destroy all local changes, till last origin commit
-git reset --hard origin
+# view git history
+git reflog
 
-# forget staged changes, local files are unchanged
-git restore --staged .
+# files changed 
+git diff
 
+# commit list
+git log
 
-# forget staged changes for file, local files are unchanged
-git reset <file-name>
-
-# destroy all changes of file, back to last local/origin commit
-git restore <flie-name>
-
-# forget staged changes for file, local file is unchanged
-git restore --staged <file-name>
-```
-
-``` shell
-# files changed after last staging or commit
-git diff --stat
-
-# above less verbose
-git diff --name-only
-```
-
-``` shell
-# last commits
-git log --graph
-
-# last commits with file changes
-git log --stat
-
-# last commits less verbose
-git log --oneline
-
-# staged not yet committed files
+# staged and untracked files
 git status
 
-# staged files less verbose
-git status -s
-```
-
-``` bash
 # edit local commit message
 git commit --amend
+
+# view old commits, opens in detached branch
+git checkout <hash>
 ```
 
-### Rollback Changes
-
-Cleans up repo of any untracked changes till last local commit then pulls in latest version from origin.[^1].
-
-```bash
-# clean up
-git reset
+``` shell
+# destroy tracked unstaged, created or modified files, untracked or staged files are untouched
 git checkout .
-git clean -fdx
 
-# sync to latest
-git pull
+# untracked files are deleted, tracked or staged files are untouched (-d: dirs / -f: files)
+git clean -df
+
+# unstages files, changes untouched
+git reset
+
+# destroy all changes of tracked file
+git restore <file-name>
+
+# unstages changes, changes untouched
+git restore --staged .
+
+# destroy commit, commit changes staged, untracked files untouched, hash commit isn't affected
+git reset --soft <hash>
+
+# destroy commit, commit changes and previous staged and untracked files untouched, hash commit isn't affected
+git reset <hash>
+
+# destroy commit and previous staged files, reverts tracked files to hash commit, untracked files untouched
+git reset --hard <hash>
+
+# add commit on top, specifically destroying given commit hash changes, untracked files untouched
+git revert <hash>
+```
+
+``` shell
+# deleting all changes since last commit
+git reset          # unstage everything
+git checkout .     # reset tracked files
+git clean -dfx     # get rid of untracked files
+
+# restore old commit to new branch
+git checkout <hash>
+git branch <branch-name>
 ```
 
 ## Gitignore
