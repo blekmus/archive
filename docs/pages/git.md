@@ -40,10 +40,13 @@ git checkout <hash>
 ```
 
 ``` shell
-# destroy tracked unstaged, created or modified files, untracked or staged files are untouched
+# changes of file since last commit
+git diff HEAD ./path/to/file
+
+# destroy tracked & unstaged file changes
 git checkout .
 
-# untracked files are deleted, tracked or staged files are untouched (-d: dirs / -f: files)
+# created untracked & unstaged files are removed (-d: dirs / -f: files)
 git clean -df
 
 # unstages files, changes untouched
@@ -52,16 +55,16 @@ git reset
 # destroy all changes of tracked file
 git restore <file-name>
 
-# unstages changes, changes untouched
+# unstages files, changes untouched
 git restore --staged .
 
-# destroy commit, commit changes staged, untracked files untouched, hash commit isn't affected
+# destroy commit, commit changes staged, untracked files untouched, <hash> commit isn't affected
 git reset --soft <hash>
 
-# destroy commit, commit changes and previous staged and untracked files untouched, hash commit isn't affected
+# destroy commit, commit changes and previous staged and untracked files untouched, <hash> commit isn't affected
 git reset <hash>
 
-# destroy commit and previous staged files, reverts tracked files to hash commit, untracked files untouched
+# destroy commit and previous staged files, reverts tracked files to <hash> commit, untracked files untouched
 git reset --hard <hash>
 
 # add commit on top, specifically destroying given commit hash changes, untracked files untouched
