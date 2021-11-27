@@ -40,33 +40,27 @@ jail.d/defaults-debian.conf => defaults-debian.local
 
 ---
 
-#### defaults-debian.local
+Prevent ufw conflicts
 
-Prevent ufw conflicts.
-
-``` ini
+``` ini title="defaults-debian.local"
 [sshd]
 enabled = false
 ```
 
 ---
 
-#### fail2ban.local
-
 Change log level.
 
-``` ini
+``` ini title="fail2ban.local"
 [DEFAULT]
 loglevel = INFO
 ```
 
 ---
 
-#### jail.local
-
 Setup the main jail which fail2ban would be listening to and blocking ips.
 
-``` ini
+``` ini title="jail.local"
 [ssh]
 enabled = true
 port = <ssh-port>
@@ -90,11 +84,9 @@ action = %(action_mwl)s
 
 ---
 
-#### mail-whois.local
-
 To configure the mail templates.
 
-``` ini
+``` ini title="mail-whois.local"
 [INCLUDES]
 before = mail-whois-common.conf
 

@@ -17,8 +17,7 @@ New files and directories that don't yet exist on any commit. They are out of th
 ## Userful Commands
 
 ``` shell
-# dislay current selected detached or attached branch
-git branch
+git branch # 
 
 # view git history
 git reflog
@@ -71,7 +70,7 @@ git reset --hard <hash>
 git revert <hash>
 ```
 
-``` shell
+``` bash
 # deleting all changes since last commit
 git reset          # unstage everything
 git checkout .     # reset tracked files
@@ -90,7 +89,7 @@ It's mainly about ignoring files in a directory. Then not-ignoring selected dire
 Remember `/vendor/*` != `/vendor/`. The former keeps the `/vendor/` folder but ignores files inside of it.
 The latter ignores the whole `/vendor/` directory. 
 
-``` gitignore
+``` bash
 # ignore everything inside /vendor/ but not dir itself
 /vendor/*
 
@@ -102,14 +101,13 @@ The latter ignores the whole `/vendor/` directory.
 
 # don't ignore /vendor/laravel/ui dir and files inside of it
 !/vendor/laravel/ui
-
 ```
 
 ## Existing Project to Git
 
 [Source](https://gist.github.com/alexpchin/102854243cd066f8b88e)
 
-```
+``` bash
 # first init
 git init
 
