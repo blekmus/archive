@@ -4,9 +4,6 @@
 # output linux version
 cat "/proc/version"
 
-# see last 10 logins
-who wtmp | tail -10
-
 # connect to a docker container terminal
 docker exec -it <cont> bash
 
@@ -24,6 +21,9 @@ sudo lastb | awk '{print $1}' | sort | uniq -c | sort -nr
 
 # switch between last cd's
 cd -
+
+# remove ssh key password
+ssh-keygen -p -f ~/.ssh/id_rsa
 ```
 
 ## Site Permissions
@@ -191,6 +191,48 @@ If the installed distro is different simply change it.
 ``` cmd
 wsl --terminate Ubuntu-20.04
 ```
+
+## Standard File Browser
+
+You can define the default file browser by editing the file `~/.local/share/applications/mimeapps.list`. Open this file and change the line `inode/directory` as follows.
+
+If this doesn't work, edit the same line in `usr/share/applications/mimeinfo.cache`. [Source](https://unix.stackexchange.com/questions/333254/set-standard-file-browser-for-open-containing-folder)
+
+~~~
+inode/directory=nautilus.desktop;
+~~~
+
+## Terminal Sessions
+
+[Source](https://haydenjames.io/kill-inactive-ssh-sessions/)
+
+~~~ bash
+# currently logged in users
+w -i
+who -a -H
+
+# login history
+last
+
+# login faliure history
+lastb
+~~~
+
+SSH session process trees
+
+~~~ bash
+pstree -p
+
+├─sshd(3102)─┬─sshd(3649)───bash(3656)
+│            └─sshd(16680)───bash(16687)───pstree(17073)
+
+
+# to kill a terminal
+kill 3649
+~~~
+
+
+
 
 
 [^1]: https://ubuntuforums.org/showthread.php?t=1702833

@@ -79,6 +79,7 @@ nav:
         - Nginx:        pages/nginx.md
         - Apache:       pages/apache.md
         - React:        pages/react-js.md
+        - Rsync:        pages/rsync.md
     - Languages:
         - Python:       pages/python.md
         - Javascript:   pages/javascript.md
