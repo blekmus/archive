@@ -60,33 +60,36 @@ copyright: Copyright &copy; 2020 - 2021 Dinil Fernando
 nav:
     - Home: index.md
     - System:
-        - General:      pages/general.md
-        - Systemd:      pages/systemd.md
-        - Storage:      pages/storage.md
-        - UFW:          pages/ufw.md
-        - Databases:    pages/database.md
-        - Git:          pages/git.md
-        - Networking:   pages/networking.md
+        - General:      pages/general/general.md
+        - Systemd:      pages/general/systemd.md
+        - Storage:      pages/general/storage.md
+        - Databases:    pages/general/database.md
+        - Git:          pages/general/git.md
+        - Networking:   pages/general/networking.md
+
     - Applications:
-        - Postfix:      pages/postfix.md
-        - Fail2Ban:     pages/fail2ban.md
-        - Veracrypt:    pages/veracrypt.md
-        - Tor:          pages/tor.md
-        - PHP:          pages/php.md
-        - Logwatch:     pages/logwatch.md
-        - Webhooks:     pages/webhooks.md
-        - Flask:        pages/flask.md
-        - Nginx:        pages/nginx.md
-        - Apache:       pages/apache.md
-        - React:        pages/react-js.md
-        - Rsync:        pages/rsync.md
+        - Postfix:      pages/applications/postfix.md
+        - Fail2Ban:     pages/applications/fail2ban.md
+        - Veracrypt:    pages/applications/veracrypt.md
+        - Tor:          pages/applications/tor.md
+        - PHP:          pages/applications/php.md
+        - Logwatch:     pages/applications/logwatch.md
+        - Webhooks:     pages/applications/webhooks.md
+        - Flask:        pages/applications/flask.md
+        - Nginx:        pages/applications/nginx.md
+        - Apache:       pages/applications/apache.md
+        - React:        pages/applications/react-js.md
+        - Rsync:        pages/applications/rsync.md
+        - UFW:          pages/applications/ufw.md
+
     - Languages:
-        - Python:       pages/python.md
-        - Javascript:   pages/javascript.md
-        - CSS:          pages/css.md
+        - Python:       pages/languages/python.md
+        - Javascript:   pages/languages/javascript.md
+        - CSS:          pages/languages/css.md
+
     - Other:
-        - DuckDuckGo:   pages/duckduckgo.md
-        - RegEx:        pages/regex.md
-        - Mock Data:    pages/mockdata.md
-        - GCalendar:   pages/gcalendar.md
+        - DuckDuckGo:   pages/other/duckduckgo.md
+        - GCalendar:    pages/other/gcalendar.md
+
+    - Tools: pages/tools.md
 

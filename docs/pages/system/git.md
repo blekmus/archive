@@ -17,7 +17,8 @@ New files and directories that don't yet exist on any commit. They are out of th
 ## Userful Commands
 
 ``` shell
-git branch # 
+# list all branches
+git branch
 
 # view git history
 git reflog
@@ -39,6 +40,9 @@ git checkout <hash>
 ```
 
 ``` shell
+# create a new branch
+git branch <name>
+
 # changes of file since last commit
 git diff HEAD ./path/to/file
 

@@ -1,6 +1,6 @@
 ## Commands
 
-``` bash
+```bash
 # output linux version
 cat "/proc/version"
 
@@ -30,7 +30,7 @@ ssh-keygen -p -f ~/.ssh/id_rsa
 
 Site permissions when popping up a new site.
 
-``` bash
+```bash
 sudo chown -R www-data:www-data loc/
 sudo chmod -R 774 loc/
 ```
@@ -39,13 +39,13 @@ sudo chmod -R 774 loc/
 
 For a single user place fonts in[^4];
 
-``` sh
+```sh
 ~/.local/share/fonts
 ```
 
 For system-wide fonts place them in[^4];
 
-``` sh
+```sh
 /usr/local/share/fonts
 
 # don't touch this
@@ -57,13 +57,13 @@ For system-wide fonts place them in[^4];
 
 One of the main things to do is to change the password asked when a user calls onto sudo. Making it ask for the root password is secure than the user pwd. So in the `/etc/sudoers` file;
 
-``` properties
+```properties
 Defaults rootpw
 ```
 
 Add a user to sudoers
 
-``` bash
+```bash
 usermod -a -G sudo <username>
 ```
 
@@ -71,13 +71,13 @@ usermod -a -G sudo <username>
 
 Whitelisting a command or set of commands for a group allows anyone who's in it to run them without `sudo`. This is done by creating a new file inside of `/etc/sudoers.d`[^2].
 
-``` bash
+```bash
 sudo visudo -f "/etc/sudoers.d/<file-name>"
 ```
 
 Inside it the following properties whitelists the app[^3]. Remember to give the abs path for the application. Use `which <app-name>` to find it.
 
-``` properties
+```properties
 Cmnd_Alias <SET-NAME> = <abs-app-path> command, <apb-app-path> command
 %<group-name> ALL=(ALL) NOPASSWD: <SET-NAME>
 ```
@@ -86,7 +86,7 @@ Cmnd_Alias <SET-NAME> = <abs-app-path> command, <apb-app-path> command
 
 A user with no home directory, login shell nor password. It's basically a no-login dummy account made solely to containerize services.
 
-``` bash
+```bash
 # create a system user and group of the same name
 sudo useradd --system --no-create-home --shell=/sbin/nologin <username>
 
@@ -99,13 +99,13 @@ sudo chmod -R 775 /path/to/change
 
 If you ever get the error;
 
-``` properties
+```properties
 chsh: PAM authentication failed
 ```
 
 Find and comment this line inside `etc/pam.d/chsh`[^1].
 
-``` properties
+```properties
 auth required pam_shells.so
 ```
 
@@ -115,25 +115,25 @@ Then do whatever you were doing and make sure to **uncomment it again**.
 
 List all groups
 
-``` bash
+```bash
 getent group
 ```
 
 Add user to a group
 
-``` bash
+```bash
 usermod -a -G group <username>
 ```
 
 What groups is a user in. If there's no args, groups of current user are shown.
 
-``` bash
+```bash
 groups <user>
 ```
 
 Create new group
 
-``` bash
+```bash
 groupadd <group>
 ```
 
@@ -149,19 +149,19 @@ Necessary groups for reg user;
 
 Decrypt a file.
 
-``` bash
+```bash
 gpg --output <output-file> --decrypt <file.gpg>
 ```
 
 Encrypt a file.
 
-``` bash
+```bash
 gpg --output <output-file.gpg> --encrypt <file>
 ```
 
 Export public and private keys.
 
-``` bash
+```bash
 # public key
 gpg --output <public.pgp> --armor --export -r <recipient>
 
@@ -173,22 +173,22 @@ gpg --output <private.pgp> --armor --export-secret-key -r <recipient>
 
 Compress a file into zst. You need `zstd` installed.
 
-``` bash
+```bash
 tar acf files.tar.zst files/
 ```
 
 Decompress a file from zst
 
-``` bash
+```bash
 tar axf files.tar.zst
 ```
 
 ## WSL
 
 If this error comes up `[process exited with code 4294967295]` run this[^5].
-If the installed distro is different simply change it. 
+If the installed distro is different simply change it.
 
-``` cmd
+```cmd
 wsl --terminate Ubuntu-20.04
 ```
 
@@ -198,15 +198,15 @@ You can define the default file browser by editing the file `~/.local/share/appl
 
 If this doesn't work, edit the same line in `usr/share/applications/mimeinfo.cache`. [Source](https://unix.stackexchange.com/questions/333254/set-standard-file-browser-for-open-containing-folder)
 
-~~~
+```
 inode/directory=nautilus.desktop;
-~~~
+```
 
 ## Terminal Sessions
 
 [Source](https://haydenjames.io/kill-inactive-ssh-sessions/)
 
-~~~ bash
+```bash
 # currently logged in users
 w -i
 who -a -H
@@ -216,11 +216,11 @@ last
 
 # login faliure history
 lastb
-~~~
+```
 
 SSH session process trees
 
-~~~ bash
+```bash
 pstree -p
 
 ├─sshd(3102)─┬─sshd(3649)───bash(3656)
@@ -229,11 +229,21 @@ pstree -p
 
 # to kill a terminal
 kill 3649
-~~~
+```
 
+## Mimetype
 
+Display mimetype of a certain file.
 
+```bash
+mimetype "/file/path.ext"
+```
 
+To change the mimetype application. Edit it in the following path.
+
+```bash
+micro "~/.local/share/applications/mimeinfo.cache"
+```
 
 [^1]: https://ubuntuforums.org/showthread.php?t=1702833
 [^2]: https://askubuntu.com/questions/930768/adding-local-content-in-etc-sudoers-d-instead-of-directly-modifying-sodoers-fi
