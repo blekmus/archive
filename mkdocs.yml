@@ -60,12 +60,12 @@ copyright: Copyright &copy; 2020 - 2021 Dinil Fernando
 nav:
     - Home: index.md
     - System:
-        - General:      pages/general/general.md
-        - Systemd:      pages/general/systemd.md
-        - Storage:      pages/general/storage.md
-        - Databases:    pages/general/database.md
-        - Git:          pages/general/git.md
-        - Networking:   pages/general/networking.md
+        - General:      pages/system/general.md
+        - Systemd:      pages/system/systemd.md
+        - Storage:      pages/system/storage.md
+        - Databases:    pages/system/database.md
+        - Git:          pages/system/git.md
+        - Networking:   pages/system/networking.md
 
     - Applications:
         - Postfix:      pages/applications/postfix.md
