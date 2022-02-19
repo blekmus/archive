@@ -1,6 +1,6 @@
 ## No Cache
 
-Flask by default caches files on client devices. When in development, this is a goddamn headache. Especially when you're writing CSS. Unlike VSCode's `live reload`, syncing stylesheet and script changes in a flask app requires you to fully reload a page. This is done by a hard reload using ++ctrl+f5++. The code below counters this by specifying in the response header telling clients not to save anything.
+Flask by default caches files on client devices. When in development, this is a goddamn headache. Especially when you're writing CSS. Unlike VSCode's `live reload`. Syncing js and css changes require you to do a hard reload using ++ctrl+f5++. The code below counters this by specifying in the response header to not save anything.
 
 ``` py3
 # don't fucking save assets in cache
