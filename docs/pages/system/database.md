@@ -1,6 +1,6 @@
 ## Setup
 
-Install MariaDB and run the initial setup script[^1]. Default port is `3306`.
+Install MariaDB and run the initial setup script. Default port is `3306`.
 
 ``` bash
 sudo apt update
@@ -134,5 +134,10 @@ To import;
 mysql <db-name> < /path/to/file.sql
 ```
 
+## MongoDB
 
-[^1]: https://www.digitalocean.com/community/tutorials/how-to-install-mariadb-on-ubuntu-20-04
+!!! error ""
+    `pymongo.errors.ServerSelectionTimeoutError`
+
+    If you get this, check if the current ip address is allowed in the dashboard.
+    [Source](https://pythonexamples.org/pymongo-errors-serverselectiontimeouterror/)

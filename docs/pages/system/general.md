@@ -20,7 +20,9 @@ ps -Flww -p <pid>
 sudo lastb | awk '{print $1}' | sort | uniq -c | sort -nr
 
 # switch between last cd's
-cd -
+nextd
+prevd
+cdh
 
 # remove ssh key password
 ssh-keygen -p -f ~/.ssh/id_rsa
@@ -37,13 +39,13 @@ sudo chmod -R 774 loc/
 
 ## Manual Fonts
 
-For a single user place fonts in[^4];
+For a single user place fonts in:
 
 ```sh
 ~/.local/share/fonts
 ```
 
-For system-wide fonts place them in[^4];
+For system-wide fonts place them in:
 
 ```sh
 /usr/local/share/fonts
@@ -52,6 +54,8 @@ For system-wide fonts place them in[^4];
 # it's only for pacman
 /usr/share/fonts/
 ```
+
+[Source](https://wiki.archlinux.org/title/Fonts#Manual_installation)
 
 ## Sudo
 
@@ -69,13 +73,13 @@ usermod -a -G sudo <username>
 
 ## Whitelisting
 
-Whitelisting a command or set of commands for a group allows anyone who's in it to run them without `sudo`. This is done by creating a new file inside of `/etc/sudoers.d`[^2].
+Whitelisting a command or set of commands for a group allows anyone who's in it to run them without `sudo`. This is done by creating a new file inside of `/etc/sudoers.d`. [Source](https://askubuntu.com/questions/930768/adding-local-content-in-etc-sudoers-d-instead-of-directly-modifying-sodoers-fi)
 
 ```bash
 sudo visudo -f "/etc/sudoers.d/<file-name>"
 ```
 
-Inside it the following properties whitelists the app[^3]. Remember to give the abs path for the application. Use `which <app-name>` to find it.
+Inside it the following properties whitelists the app. Remember to give the abs path for the application. Use `which <app-name>` to find it. [Source](https://askubuntu.com/questions/692701/allowing-user-to-run-systemctl-systemd-services-without-password)
 
 ```properties
 Cmnd_Alias <SET-NAME> = <abs-app-path> command, <apb-app-path> command
@@ -103,7 +107,7 @@ If you ever get the error;
 chsh: PAM authentication failed
 ```
 
-Find and comment this line inside `etc/pam.d/chsh`[^1].
+Find and comment this line inside `etc/pam.d/chsh`. [Source](https://ubuntuforums.org/showthread.php?t=1702833)
 
 ```properties
 auth required pam_shells.so
@@ -185,11 +189,12 @@ tar axf files.tar.zst
 
 ## WSL
 
-If this error comes up `[process exited with code 4294967295]` run this[^5].
-If the installed distro is different simply change it.
+If this error comes up `[process exited with code 4294967295]` run this. [Source](https://github.com/microsoft/WSL/issues/5092)
 
-```cmd
-wsl --terminate Ubuntu-20.04
+If the installed WSL `<distro>` is ubuntu 18.04, use `Ubuntu-20.04`
+
+```bash
+wsl --terminate <distro>
 ```
 
 ## Standard File Browser
@@ -239,14 +244,22 @@ Display mimetype of a certain file.
 mimetype "/file/path.ext"
 ```
 
-To change the mimetype application. Edit it in the following path.
+Edit the following file to change default mimetype default application. [Source](https://wiki.archlinux.org/title/XDG_MIME_Applications#mimeapps.list)
 
 ```bash
-micro "~/.local/share/applications/mimeinfo.cache"
+micro "~/.config/mimeapps.list"
 ```
 
-[^1]: https://ubuntuforums.org/showthread.php?t=1702833
-[^2]: https://askubuntu.com/questions/930768/adding-local-content-in-etc-sudoers-d-instead-of-directly-modifying-sodoers-fi
-[^3]: https://askubuntu.com/questions/692701/allowing-user-to-run-systemctl-systemd-services-without-password
-[^4]: https://wiki.archlinux.org/title/Fonts#Manual_installation
-[^5]: https://github.com/microsoft/WSL/issues/5092
+## Specific Sized Files
+
+Create a file with a specific size. Write the size as `5M` or `10G`.
+
+```bash
+truncate -s <size> <file.txt>
+```
+
+
+[^1]: 
+[^2]: 
+[^3]: 
+[^5]: 

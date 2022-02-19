@@ -81,6 +81,8 @@ nav:
         - React:        pages/applications/react-js.md
         - Rsync:        pages/applications/rsync.md
         - UFW:          pages/applications/ufw.md
+        - FFMPEG:       pages/applications/ffmpeg.md
+        - Rclone:       pages/applications/rclone.md
 
     - Languages:
         - Python:       pages/languages/python.md

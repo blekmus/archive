@@ -183,5 +183,3 @@ trap "ssh-agent -k" exit
 
 !!! info ""
     **Always remember to kill what you start.**
-
-[^1]: https://stackoverflow.com/questions/14075581/git-undo-all-uncommitted-or-unsaved-changes

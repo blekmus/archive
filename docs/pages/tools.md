@@ -1,11 +1,12 @@
 ## General Tools
 
-| Name                           | Link                                  |
-| ------------------------------ | ------------------------------------- |
-| Text with line breaks to array | [here](https://arraythis.com/)        |
-| Cron schedule generator        | [here](https://crontab.guru/)         |
-| Chmod generator                | [here](https://chmodcommand.com/)     |
-| ASCII folder tree generator    | [here](https://tree.nathanfriend.io/) |
+| Name                           | Link                                       |
+| ------------------------------ | ------------------------------------------ |
+| Text with line breaks to array | [here](https://arraythis.com/)             |
+| Cron schedule generator        | [here](https://crontab.guru/)              |
+| Chmod generator                | [here](https://chmodcommand.com/)          |
+| ASCII folder tree generator    | [here](https://tree.nathanfriend.io/)      |
+| AWS services response testing  | [here](https://latencycheck.altaircp.com/) |
 
 ## Regex
 
