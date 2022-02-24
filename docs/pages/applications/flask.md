@@ -25,7 +25,7 @@ def add_header(r):
 
 ## Connecting a DB
 
-First create a separate database and user for the web-app in the [usual way](../database#usual-process). Then reference the db from the flask app. To get MariaDB working on SQLAlchemy you'll also need to install the `pymysql` package[^2].
+First create a separate database and user for the web-app in the [usual way](../../system/database#creating). Then reference the db from the flask app. To get MariaDB working on SQLAlchemy you'll also need to install the `pymysql` package[^2].
 
 ``` py3
 app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://<username>:<password>@localhost/<app-db-name>?charset=utf8mb4"
@@ -46,7 +46,7 @@ gunicorn --bind localhost:5000 <app-name>:app
 
 ### Production
 
-When deploying, create a systemd service for the `gunicorn`. See more info about creating systemd services [here](../systemd/#service-files). 
+When deploying, create a systemd service for the `gunicorn`. See more info about creating systemd services [here](../../system/systemd/#service-files). 
 
 Find info about workers and optimizations [here](https://medium.com/building-the-system/gunicorn-3-means-of-concurrency-efbb547674b7).
 
@@ -69,17 +69,17 @@ WantedBy=multi-user.target
 
 ## Hook Instance
 
-Create a webhook instance json file and connect it with Github to listen to push requests from the repo. More info [here](../webhooks/#setup).
+Create a webhook instance json file and connect it with Github to listen to push requests from the repo. More info [here](../../system/webhooks/#setup).
 
-Then create a [new group](../general/#groups) for the flask app and couple it with the already existing `webhook` user created when setting up the webhook application. In it [whitelist](../general/#whitelisting) the `systemctl` commands for dealing with the gunicorn service.
+Then create a [new group](../../system/general/#groups) for the flask app and couple it with the already existing `webhook` user created when setting up the webhook application. In it [whitelist](../../system/general/#whitelisting) the `systemctl` commands for dealing with the gunicorn service.
 
-Write a systemd service file with the `webhook` user and the new group for the hook instance. Find out how [here](../webhooks/#systemd-service).
+Write a systemd service file with the `webhook` user and the new group for the hook instance. Find out how [here](../../system/webhooks/#systemd-service).
 
 ## Integration Script
 
-Since systemd runs services in isolated environments. Without access to the user shell nor any environment variables. So, for private repos an ssh-agent needs to be started every time the script is run for Github authentication. More info [here](../git/#automated-deployment).
+Since systemd runs services in isolated environments. Without access to the user shell nor any environment variables. So, for private repos an ssh-agent needs to be started every time the script is run for Github authentication. More info [here](../../system/git/#automated-deployment).
 
-First clean the repo of any untracked changes. Then pull the latest commit. Find how [here](). Finally reload the site. Make sure to only use the `systemctl` commands that were defined in the group the hook instance is running on. 
+First clean the repo of any untracked changes. Then pull the latest commit. Find how [here](../../system/git/#userful-commands). Finally reload the site. Make sure to only use the `systemctl` commands that were defined in the group the hook instance is running on. 
 
 ``` bash
 systemctl restart <app-service>

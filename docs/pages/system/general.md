@@ -258,8 +258,14 @@ Create a file with a specific size. Write the size as `5M` or `10G`.
 truncate -s <size> <file.txt>
 ```
 
+## Kitty Terminal
 
-[^1]: 
-[^2]: 
-[^3]: 
-[^5]: 
+When connecting to a host using ssh. Kitty gives a `'xterm-kitty': unknown terminal type.` error. To solve that you need to set the terminal `TERM` env variable to something other than the default. [Source](https://github.com/kovidgoyal/kitty/issues/1241)
+
+```bash
+# fish shell
+set TERM xterm
+
+# bash
+export TERM=xterm
+```
