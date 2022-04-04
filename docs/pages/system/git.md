@@ -149,7 +149,14 @@ Add generated ssh key to ssh-agent
 ssh-add "/key/location"
 ```
 
-Then just copy the `.pub` and paste it into `github.com`
+Then just copy the `.pub` and paste it into `github.com`. Run this to check if the key works.
+
+```bash
+ssh -T git@github.com
+
+> Hi <username>! You've successfully authenticated, but GitHub does not
+> provide shell access.
+```
 
 ## Automated Deployment
 

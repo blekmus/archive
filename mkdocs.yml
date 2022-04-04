@@ -94,6 +94,7 @@ nav:
     - Other:
         - DuckDuckGo:   pages/other/duckduckgo.md
         - GCalendar:    pages/other/gcalendar.md
+        - Hardware:     pages/other/hardware.md
 
     - Tools: pages/tools.md
 

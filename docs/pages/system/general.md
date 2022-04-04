@@ -269,3 +269,72 @@ set TERM xterm
 # bash
 export TERM=xterm
 ```
+
+## Fish Shell
+
+Add directory to PATH
+
+```bash
+fish_add_path /path/to/dir
+```
+
+## Firefox
+
+Setting to know in `about:config`
+
+```bash
+# Touchpad vertical scroll sensivity
+mousewheel.default.delta_multiplier_y.
+```
+
+## Gnome Shell
+
+To unbind the ++Super+number++ shortcuts from opening the dock apps you can run;
+
+```bash
+for i in {1..9}; do gsettings set org.gnome.shell.keybindings switch-to-application-$i "[]";done
+```
+
+To revert this;
+
+```bash
+for i in {1..9}; do gsettings set org.gnome.shell.keybindings switch-to-application-$i "['<Super>$i']";done
+```
+
+[Source](https://askubuntu.com/questions/1294130/how-can-i-unbind-supernumber-1-2-3-from-opening-apps)
+
+## Decrease libinput Sensitivity
+
+You can simply change the touchpad speed or how fast the cursor moves from the settings but you can't change the sensitivity of gestures and two finger navigation. To do this you need to reduce the sensitivity density
+
+First get the touchpad size
+
+    
+```bash
+libinput list-devices | grep Size
+```
+
+Then measure the touchpad and generate a custom config/snippet. The size here should be a division of the size returned from the above command.
+
+```bash
+sudo libinput measure touchpad-size 20x45
+```
+
+Now copy the snippet between the equal marks and paste it in the following file.
+
+```bash
+sudo nano /etc/udev/hwdb.d/61-evdev-local.hwdb
+```
+
+Now update hwdb
+
+```bash
+sudo systemd-hwdb update
+sudo udevadm trigger /dev/input/event*
+```
+
+Finally reboot to view changes
+
+```bash
+reboot
+```

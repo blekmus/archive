@@ -108,6 +108,12 @@
   border-radius: 5px;
 }
 
+.md-typeset h2 {
+  border-bottom: solid 1px rgb(39, 55, 76);
+  padding-bottom: 2px;
+  font-weight: 500;
+}
+
 
 /* admonition with title topbar */
 .md-typeset :is(.tip, .hint, .important) > :is(.admonition-title, summary) {
