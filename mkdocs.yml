@@ -87,7 +87,6 @@ nav:
         - Rclone:       pages/applications/rclone.md
 
     - Languages:
-        - Python:       pages/languages/python.md
         - Javascript:   pages/languages/javascript.md
         - CSS:          pages/languages/css.md
 
