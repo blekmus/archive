@@ -85,6 +85,7 @@ nav:
         - UFW:          pages/applications/ufw.md
         - FFMPEG:       pages/applications/ffmpeg.md
         - Rclone:       pages/applications/rclone.md
+        - Laravel:      pages/applications/laravel.md
 
     - Languages:
         - Javascript:   pages/languages/javascript.md

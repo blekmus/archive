@@ -115,5 +115,32 @@ Finally check if everything works fine by popping up a php test file. More info 
 | {==Server API==} | {==FPM/FastCGI==} |
 | Virtual..        | -                 |
 
+
+## Rewrite Issues
+
+There way be the possibility that rewrite is diabled in the apache config. To enable it go to the `/etc/apache2/apache2.conf` file and edit the following
+
+    
+```apache
+<Directory /var/www>
+    Options Indexes FollowSymLinks
+    AllowOverride None
+    Require all granted
+</Directory>
+```
+
+Change `AllowOverride none` to `AllowOverride all`
+
+If even that doesn't work, then you can try to enable the rewrite module.
+
+```bash
+# enable
+sudo a2enmod rewrite
+
+# restart apache
+sudo service apache2 restart
+```
+
+
 [^1]: https://www.digitalocean.com/community/tutorials/how-to-configure-nginx-as-a-web-server-and-reverse-proxy-for-apache-on-one-ubuntu-20-04-server
 [^2]: https://tecadmin.net/setup-apache-php-fpm-ubuntu-20-04/

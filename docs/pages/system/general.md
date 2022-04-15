@@ -348,3 +348,30 @@ python3 -m pip install -U pipreqs
 # go to script folder
 pipreqs .
 ```
+
+## Cronjobs
+
+Setting up separate logging for cron. This however will not log the outputs of cron jobs. This is only for the cron process itself.
+
+``` bash
+# open this file
+micro /etc/rsyslog.d/50-default.conf
+
+# uncomment this line
+cron.*
+
+# restart syslog
+sudo service rsyslog restart
+```
+
+After this, logs should appear in a separate file called `/var/log/cron.log`. Cron activity will now be logged to this file (in addition to syslog).
+
+As for logging the output of cron jobs. Simply redirect command outputs.
+
+```
+01 14 * * * /home/joe/myscript >> /home/log/myscript.log 2>&1
+```
+
+This will redirect all standard output and errors that may be produced by the script that is run to the log file specified.
+
+[Source](https://askubuntu.com/questions/56683/where-is-the-cron-crontab-log)
