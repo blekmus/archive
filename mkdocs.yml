@@ -17,7 +17,7 @@ theme:
         - navigation.instant
         - navigation.top
         - content.code.annotate
-
+        - navigation.tabs
 
 markdown_extensions:
     - pymdownx.highlight
@@ -55,7 +55,7 @@ extra:
       name: Dinil on Github
 
 
-copyright: Copyright &copy; 2020 - 2021 Dinil Fernando
+copyright: Copyright &copy; 2020 - Present. Dinil Fernando
 
 
 # Page Tree
@@ -91,10 +91,11 @@ nav:
         - Javascript:   pages/languages/javascript.md
         - CSS:          pages/languages/css.md
 
+    - Tools: pages/tools.md
+
     - Other:
         - DuckDuckGo:   pages/other/duckduckgo.md
         - GCalendar:    pages/other/gcalendar.md
         - Hardware:     pages/other/hardware.md
 
-    - Tools: pages/tools.md
 

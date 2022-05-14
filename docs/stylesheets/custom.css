@@ -73,10 +73,26 @@
   border-top: solid 2px var(--md-accent-fg-color);
 }
 
-/* topbar border */
+/* topbar topmost */
 .md-header {
-  border-bottom: solid 1px var(--md-accent-fg-color);
   background: linear-gradient(135deg, #151F2E 0%, #171D34 100%);
+}
+
+/* topbar tabs */
+.md-tabs {
+  background: linear-gradient(135deg, #151F2E 0%, #171D34 100%);
+  border-bottom: solid 1px var(--md-accent-fg-color);
+}
+.md-header[data-md-state="shadow"] {
+  border-bottom: solid 1px var(--md-accent-fg-color);
+}
+.md-tabs__link {
+  font-size: .74rem;
+  font-weight: 500;
+}
+
+.md-tabs__link--active, .md-tabs__link:is(:focus, :hover) {
+  color: var(--md-default-fg-color);
 }
 
 /* hide the hideous footer prev/next */
@@ -173,33 +189,50 @@
     align-items: center;
     padding: 0;
     font-size: 2.5em;
-    padding-top: 30px;
+    /* padding-top: 30px; */
   }
 
   /* hide logo in mobile left nav */
   .md-nav--primary .md-nav__title .md-logo {
-    position: absolute;
+    display: none;
+    /* position: absolute;
     display: block;
     top: 17px;
     left: initial;
     padding: 0;
-    margin: 0;
+    margin: 0; */
   }
 
-  .md-nav--primary .md-nav__title .md-logo img {
+  /* .md-nav--primary .md-nav__title .md-logo img {
     width: 1.2rem;
     height: 1.2rem;
-  }
+  } */
 }
 
 
 @media screen and (min-width: 76.25em) {
-  /* desktop left nav */
-  .md-nav.md-nav--primary {
-    background-color: #192435;
+  .md-nav.md-nav--primary .md-nav {
+    font-size: .74rem;
+  }
+
+  .md-nav--lifted > .md-nav__list > .md-nav__item--active > .md-nav__link {
+    display: none !important;
+  }
+
+  .md-nav.md-nav--primary .md-nav .md-nav__list .md-nav__link--active {
+    color: var(--md-typeset-a-color);
+    background-color: #161e31;
+  }
+
+  .md-nav.md-nav--primary .md-nav .md-nav__list .md-nav__link:is(:focus, :hover) {
+    color: var(--md-typeset-a-color);
+  }
+
+  .md-nav.md-nav--primary .md-nav .md-nav__list .md-nav__item a {
+    padding: 8px 8px;
     border-radius: 5px;
-    padding: 10px 0;
-  }  
+    margin-top: 3px;
+  }
 
   /* desktop left nav radius when there's scroll */
   .md-sidebar__scrollwrap {
