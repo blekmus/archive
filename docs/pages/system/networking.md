@@ -55,3 +55,21 @@ UDP port `123` is allowed for both incoming and outgoing traffic to NTP work. Ad
 ## Ghost
 
 By default the port is set to `2369`. If you visit that port, it'd show nothing. The correct port is `2368`
+
+## Public Ip
+
+``` bash
+curl ifconfig.me # ipv4
+curl ipinfo.io/ip # ipv4
+curl api.ipify.org # ipv4
+curl ident.me # ipv6
+```
+
+## SSH Port Forwarding
+
+``` bash
+ssh -N -L 8888:127.0.0.1:80 user@server.com
+```
+The command above attaches the server's port 80 to local port `8888`. Meaning if a site is hosted on port `80` on the server. I can view it by going to `127.0.0.1:8888` on my browser.
+
+The command above doesn't give any output. So if there isn't anything, that means its probably working as intended.

@@ -69,6 +69,7 @@ nav:
         - Git:          pages/system/git.md
         - Networking:   pages/system/networking.md
         - Webhooks:     pages/system/webhooks.md
+        - Flatpak:      pages/system/flatpak.md
 
     - Applications:
         - Postfix:      pages/applications/postfix.md

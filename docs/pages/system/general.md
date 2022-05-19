@@ -285,6 +285,9 @@ Setting to know in `about:config`
 ```bash
 # Touchpad vertical scroll sensivity
 mousewheel.default.delta_multiplier_y.
+
+# Mousewheel vertical scroll sensitivity
+mousewheel.min_line_scroll_amount
 ```
 
 ## Gnome Shell

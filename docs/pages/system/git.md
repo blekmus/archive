@@ -127,6 +127,9 @@ git remote -v
 
 # finally push to origin, check origin name (master/main) from github
 git push origin <origin-name>
+
+# set default origin branch to master
+git push --set-upstream origin master
 ```
 
 ## Local SSH

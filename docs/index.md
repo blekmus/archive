@@ -47,6 +47,20 @@ Stuff I've sprung up over the course of my learning endeavors.
 
     Find the code [here](https://github.com/blekmus/anime-tracker)
 
+## Color Scheme
+Personal color scheme based off of [Anilist](https://anilist.co/).
+
+<style>
+    .coolors-palette-widget_info {
+        display: none !important;
+    }
+
+    .coolors-palette-widget {
+        height: initial !important;
+    }
+</style>
+<script src="https://coolors.co/palette-widget/widget.js"></script>
+<script data-id="0953594985235442">new CoolorsPaletteWidget("0953594985235442", ["ffffff","b4c8da","3db4f2","d878cb","151f2e","0b1622"]); </script>
 
 ## Desktop
 
