@@ -161,6 +161,25 @@ ssh -T git@github.com
 > provide shell access.
 ```
 
+## Submodules
+
+To put your submodule code back into the main repository, you just need to remove the submodule and re-add the files into the main repo:
+
+``` bash
+# delete reference to submodule HEAD (no trailing slash)
+git rm --cached submodule_path
+
+# if more than one submodule in repo, edit, don't delete
+git rm .gitmodules             
+rm -rf submodule_path/.git
+
+# add then commit the newly unmoduled files
+git add .         
+git commit -m "remove submodule"
+```
+
+[Source](https://stackoverflow.com/questions/1759587/how-to-un-submodule-a-git-submodule)
+
 ## Automated Deployment
 
 There are multiple ways to automate deployment. See the pros and cons of each of these methods [here](https://docs.github.com/en/developers/overview/managing-deploy-keys). For more ways to do this

@@ -290,22 +290,6 @@ mousewheel.default.delta_multiplier_y.
 mousewheel.min_line_scroll_amount
 ```
 
-## Gnome Shell
-
-To unbind the ++Super+number++ shortcuts from opening the dock apps you can run;
-
-```bash
-for i in {1..9}; do gsettings set org.gnome.shell.keybindings switch-to-application-$i "[]";done
-```
-
-To revert this;
-
-```bash
-for i in {1..9}; do gsettings set org.gnome.shell.keybindings switch-to-application-$i "['<Super>$i']";done
-```
-
-[Source](https://askubuntu.com/questions/1294130/how-can-i-unbind-supernumber-1-2-3-from-opening-apps)
-
 ## Decrease libinput Sensitivity
 
 You can simply change the touchpad speed or how fast the cursor moves from the settings but you can't change the sensitivity of gestures and two finger navigation. To do this you need to reduce the sensitivity density
@@ -378,3 +362,21 @@ As for logging the output of cron jobs. Simply redirect command outputs.
 This will redirect all standard output and errors that may be produced by the script that is run to the log file specified.
 
 [Source](https://askubuntu.com/questions/56683/where-is-the-cron-crontab-log)
+
+## Timeshift Backups
+
+If automated backups aren't being created even if Timeshift is completely configured. A service called `cronie` might be disabled. 
+
+``` bash
+systemctl enable cronie.service 
+systemctl start cronie.service 
+```
+
+That should hopefully solve this issue. To check if there's a problem with the Timeshift configuration itself.
+``` bash
+sudo timeshift --check --scripted
+```
+
+Running this command will create a snapshot if one is due. You can see if this does create a snapshot from the GUI afterwards. If this command doesn't work then the problem is in configuration or user account/permissions.
+
+[Source](https://github.com/teejee2008/timeshift/issues/396)

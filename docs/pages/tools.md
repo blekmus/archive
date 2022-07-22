@@ -1,12 +1,15 @@
 ## General Tools
 
-| Name                           | Link                                       |
-| ------------------------------ | ------------------------------------------ |
-| Text with line breaks to array | [here](https://arraythis.com/)             |
-| Cron schedule generator        | [here](https://crontab.guru/)              |
-| Chmod generator                | [here](https://chmodcommand.com/)          |
-| ASCII folder tree generator    | [here](https://tree.nathanfriend.io/)      |
-| AWS services response testing  | [here](https://latencycheck.altaircp.com/) |
+| Name                           | Link                                                             |
+| ------------------------------ | ---------------------------------------------------------------- |
+| Text with line breaks to array | [here](https://arraythis.com/)                                   |
+| Cron schedule generator        | [here](https://crontab.guru/)                                    |
+| Chmod generator                | [here](https://chmodcommand.com/)                                |
+| ASCII folder tree generator    | [here](https://tree.nathanfriend.io/)                            |
+| AWS services response testing  | [here](https://latencycheck.altaircp.com/)                       |
+| JSON Formatter & Validator     | [here](https://jsonformatter.curiousconcept.com/)                |
+| JPG images to PDF              | [here](https://jpg2pdf.com//)                                    |
+| Line break remover             | [here](https://www.textfixer.com/tools/remove-line-breaks.php//) |
 
 ## Regex
 

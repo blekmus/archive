@@ -70,6 +70,7 @@ nav:
         - Networking:   pages/system/networking.md
         - Webhooks:     pages/system/webhooks.md
         - Flatpak:      pages/system/flatpak.md
+        - Gnome:        pages/system/gnome.md
 
     - Applications:
         - Postfix:      pages/applications/postfix.md

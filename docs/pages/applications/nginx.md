@@ -26,6 +26,27 @@ server {
 }
 ```
 
+## Reverse Proxy
+
+``` nginx
+server {
+    server_name <domain>;
+    listen 80;
+    
+    location / {
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header Host $http_host;
+        proxy_pass http://127.0.0.1:<port>;
+    }
+
+    location ~ /.well-known {
+        allow all;
+    }
+}
+```
+
 ## Transfer www
 
 First create an A record from both the root domain and the www subdomain towards the ip. Then in the nginx conf file, add the block below seperately

@@ -7,6 +7,8 @@
   --md-accent-fg-color:            #d878cb; /* accent */
   --md-accent-dark-fg-color:       #a14494; /* accent */
 
+  --md-typeset-color: #b4c8da;
+
 
   --md-code-bg-color:              #151f2e; /* codebox back */
   --md-code-fg-color:              #e0cbd8; /* codebox text */
@@ -15,10 +17,16 @@
   --md-code-hl-number-color:       #ff8686; /* codebox number */
   --md-code-hl-keyword-color:      #40c3ca; /* codebox keywords */
   --md-code-hl-special-color:      #f758aa; /* codebox special */
+  --md-code-hl-comment-color: #8596a5;
+  --md-code-hl-punctuation-color: #8596a5;
+  --md-code-hl-variable-color: #8596a5;
+  --md-code-hl-name-color: #e0cbd8;
+  --md-code-hl-operator-color: #8596a5;
 
   --md-typeset-kbd-color: var(--md-code-bg-color);
 
   --md-admonition-bg-color:        #111b29;
+  --md-admonition-fg-color: #b4c8da;
 
   --md-default-fg-color--lightest: #bebaba4a;
   --md-default-fg-color--lighter:  #bebaba2e;
@@ -78,12 +86,16 @@
   background: linear-gradient(135deg, #151F2E 0%, #171D34 100%);
 }
 
+.md-header__topic:first-child {
+  font-weight: 400;
+}
+
 /* topbar tabs */
 .md-tabs {
   background: linear-gradient(135deg, #151F2E 0%, #171D34 100%);
   border-bottom: solid 1px var(--md-accent-fg-color);
 }
-.md-header[data-md-state="shadow"] {
+.md-container nav.md-header__inner {
   border-bottom: solid 1px var(--md-accent-fg-color);
 }
 .md-tabs__link {
@@ -98,8 +110,9 @@
 /* hide the hideous footer prev/next */
 .md-footer-nav__inner,
 .md-footer__inner {
-  display: none;
+  display: none !important;
 }
+
 
 /* footer top border and background color */
 .md-footer-meta {
