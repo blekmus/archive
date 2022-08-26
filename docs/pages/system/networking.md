@@ -73,3 +73,17 @@ ssh -N -L 8888:127.0.0.1:80 user@server.com
 The command above attaches the server's port 80 to local port `8888`. Meaning if a site is hosted on port `80` on the server. I can view it by going to `127.0.0.1:8888` on my browser.
 
 The command above doesn't give any output. So if there isn't anything, that means its probably working as intended.
+
+## Sharing Port on Local Net
+
+Trying to stream videos through an FTP server or when trying to see how the website your coding looks on mobile. Knowing the address you need to look up on mobile can be daunting. When doing things within the same local network. You need the private IP not the public IP.
+
+``` bash
+# get private ip address
+# if this returns two entries, ignore loopback ip (127.0.0.1)
+# ignore everything after the slash
+nmcli -p device show | grep "IP4.ADDRESS" # 192.168.8.102/24
+
+# check if firewalls are disabled, disable if enabled
+sudo ufw status
+```

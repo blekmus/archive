@@ -34,3 +34,13 @@ const file = '/home/user/dir/file.txt'
 path.parse(file).base // file.txt
 path.basename(file) // file.txt
 ```
+
+## React
+
+### Variable New Lines Omitted
+
+There are times when you have a variable with new lines. When you display this variable `<span>{someText}</span>` normally. The result is as if those `\n`s didn't even exist. The solution is simple. Just stick this in the css of the text.
+
+``` js
+style={{ whiteSpace: 'pre-wrap' }}
+```

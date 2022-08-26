@@ -71,6 +71,7 @@ nav:
         - Webhooks:     pages/system/webhooks.md
         - Flatpak:      pages/system/flatpak.md
         - Gnome:        pages/system/gnome.md
+        - Hardware:     pages/system/hardware.md
 
     - Applications:
         - Postfix:      pages/applications/postfix.md
