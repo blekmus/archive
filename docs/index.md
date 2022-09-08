@@ -6,11 +6,32 @@ This is basically [my](https://github.com/blekmus) unix and everything techy kno
 I made this to help lessen the blow from my retarded memory retention abilities.
 
 The site is hosted on Github Pages and is built using [MkDocs](https://github.com/mkdocs/mkdocs). 
-With a customized theme based off of the superb [Mkdocs-Material](https://github.com/squidfunk/mkdocs-material) theme.
+With a customized theme based off of the superb [Mkdocs-Material](https://github.com/squidfunk/mkdocs-material) theme. All edits are done remotely using [Github Codespaces](https://github.com/features/codespaces)
 
 ## Sites
 
 Stuff I've sprung up over the course of my learning endeavors.
+
+??? tip "The Lonely Lands"
+    A collection of thoughts, musings, and memories written down over the years by me.
+
+    Built using Nextjs using Typescript. This was my first TS project in fact. Custom outward facing UI with Mantine powered admin dashboard. Connected to CockroachDB using Prismajs in the backend.
+
+    Visit it [here](https://thelonelylands.com)
+
+    Find the code [here](https://github.com/blekmus/next-thelonelylands)
+
+
+??? tip "Tools"
+    Sometimes no matter how much you look online, you aren't able to find the right tool. It may be a file converter. A request
+    client. Anything. That's why I built this. An easy to customize tooling site to index quick scripts.
+
+    Built using Nextjs in Typescript and hosted on Netlify. This is a completely client side application. The UI is powered by Mantine.
+
+    Visit it [here](https://tools.thelonelylands.com)
+
+    Find the code [here](https://github.com/blekmus/next-tools)
+
 
 ??? tip "AniTracker"
     One of the best things that happened to me during the pandemic was the boredom that came with staying at home all day. This made me explore a ton of new different technologies. One of them was the js library react. 

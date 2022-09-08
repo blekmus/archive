@@ -44,3 +44,13 @@ There are times when you have a variable with new lines. When you display this v
 ``` js
 style={{ whiteSpace: 'pre-wrap' }}
 ```
+
+### Unsupported Attributes
+
+Including attribute with empty quotes does the trick[^1].
+
+``` html
+<input directory="" webkitdirectory="" type="file" />
+```
+
+[^1]: https://github.com/facebook/react/issues/3468

@@ -83,7 +83,6 @@ nav:
         - Flask:        pages/applications/flask.md
         - Nginx:        pages/applications/nginx.md
         - Apache:       pages/applications/apache.md
-        - React:        pages/applications/react-js.md
         - Rsync:        pages/applications/rsync.md
         - UFW:          pages/applications/ufw.md
         - FFMPEG:       pages/applications/ffmpeg.md

@@ -71,6 +71,50 @@ Add a user to sudoers
 usermod -a -G sudo <username>
 ```
 
+### Root lock
+
+Is root locked? If so, how do I unlock it?
+
+Focus on the second column of this command. L means locked. P means there's a password or a password can be set.
+
+``` bash
+# check
+sudo passwd -S root  # root P 09/02/2022 0 99999 7 -1
+
+# unlock 
+sudo usermod -U root
+sudo passwd root
+```
+
+### Sudo access
+
+At the end of `/etc/sudoers` there is what appears to be a comment:
+```
+#includedir /etc/sudoers.d
+```
+
+This includes sudo rules from files inside of `/etc/sudoers.d`. Here are some examples of rules that could be included in those files and what they mean.
+``` bash
+# user ubuntu can run sudo without a password
+ubuntu ALL=(ALL) NOPASSWD:ALL
+
+# members of admin group can sudo without a password
+%admin  ALL=(ALL) NOPASSWD:ALL
+
+# members of sudo group can sudo but needs password
+%sudo  ALL=(ALL) ALL
+```
+
+Always use `visudo` to make edits to all of the mentioned files
+``` bash
+sudo visudo -f /etc/sudoers.d/90-cloud-init-users
+```
+
+Once you're done making edits, restart sudo to apply the changes
+``` bash
+sudo service sudo restart
+```
+
 ## Whitelisting
 
 Whitelisting a command or set of commands for a group allows anyone who's in it to run them without `sudo`. This is done by creating a new file inside of `/etc/sudoers.d`. [Source](https://askubuntu.com/questions/930768/adding-local-content-in-etc-sudoers-d-instead-of-directly-modifying-sodoers-fi)
