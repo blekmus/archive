@@ -85,6 +85,78 @@ git checkout <hash>
 git branch <branch-name>
 ```
 
+## Commands in Text
+
+### There are changes on the master branch. How do I move them out?
+
+```bash
+git branch dev
+git checkout dev
+
+git add .
+git commit -m 'committed changes'
+```
+
+This will move the untracked changes to the dev branch. Once the changes are commited, the changes will be tracked and will no longer be on the master branch. They will be exclusively on the dev branch.
+
+### There are changes both locally and remotely. How do I pull?
+
+```bash
+git stash
+git pull
+git stash pop
+```
+
+This will remove the changes from the branch and put them in a temporary stash. There by reverting the branch to its last commit state. Then, you can pull the changes from the remote. Finally, you can pop the changes back onto the master branch. This will merge the local changes on top of the remote changes. If there are any conflicts, you will have to resolve them manually.
+
+### Get rid of all untracked changes?
+
+```bash
+git stash
+git stash drop
+```
+
+This will remove all untracked changes from the branch. This is useful if you want to revert the branch to its last commit state.
+
+### I commited by accident. How do I undo it while keeping changes?
+
+```bash
+git reset --soft HEAD~1
+```
+
+This will undo the last commit. The changes will still be on the branch. To revert the changes as well, you can use the following command:
+
+```bash
+git reset --hard HEAD~1
+```
+
+This will undo the last commit and all changes will be removed from the branch.
+
+### I made a mistake in my last commit. How do I fix it?
+
+```bash
+git commit --amend
+```
+
+This will open up your default text editor with the last commit message. Saving it will update the last commit.
+
+### How do I undo a commit that has already been pushed?
+
+```bash
+git revert <commit-hash>
+```
+
+This will create a new commit that undoes the changes made in the commit with the given commit-hash. The commit with the given commit-hash will still be on the remote. The new commit is like a normal commit that has been made after the given commit-hash. Push the changes to the remote to update the remote branch.
+
+### I want to change the commit message of a commit that has already been pushed.
+
+```bash
+git commit --amend
+git push --force
+```
+
+This will open up your default text editor with the last commit message. Saving it will update the last commit. The push will override the remote branch with the local branch.
+
 ## Gitignore
 
 The below excludes all files except the files inside of and the /vendor/laravel/ui dir itself.
