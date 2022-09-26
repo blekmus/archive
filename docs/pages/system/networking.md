@@ -87,3 +87,19 @@ nmcli -p device show | grep "IP4.ADDRESS" # 192.168.8.102/24
 # check if firewalls are disabled, disable if enabled
 sudo ufw status
 ```
+
+## Troubleshooting
+
+!!! warning ""
+    __ssh Received disconnect from port <port>:2: Too many authentication failures__
+
+    One major cause for this error is having multiple keys in your .ssh directory. When encountering this, either specify the key you want to use or add the key to the ssh config.
+        
+    ``` bash
+    ssh -i ~/.ssh/<key> user@host
+    ```
+
+    ```
+    Host <host>
+        IdentityFile ~/.ssh/<key>
+    ```

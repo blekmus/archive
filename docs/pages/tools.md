@@ -11,6 +11,7 @@
 | JPG images to PDF              | [here](https://jpg2pdf.com//)                                   |
 | Line break remover             | [here](https://www.textfixer.com/tools/remove-line-breaks.php/) |
 | JSON to TypeScript             | [here](https://transform.tools/json-to-typescript)              |
+| Resolution/Aspect ratio calc   | [here](https://scriptygoddess.com/resources/proportioncalc.htm) |
 
 ## Regex
 

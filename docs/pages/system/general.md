@@ -322,6 +322,18 @@ Add directory to PATH
 fish_add_path /path/to/dir
 ```
 
+
+### Sudo errors
+
+When trying to `su` or running `sudo`, this error is given:
+
+```properties
+su: failed to execute /usr/local/bin/fish: No such file or directory
+```
+
+This happens when `/etc/passwd` has `/usr/local/bin/fish` as the user's default shell but that shell path doesn't exist. To fix it become root by using `sudo bash`. Then manually clean  `/etc/passwd` of all traces of the non existent path.
+
+
 ## Firefox
 
 Setting to know in `about:config`
@@ -424,3 +436,35 @@ sudo timeshift --check --scripted
 Running this command will create a snapshot if one is due. You can see if this does create a snapshot from the GUI afterwards. If this command doesn't work then the problem is in configuration or user account/permissions.
 
 [Source](https://github.com/teejee2008/timeshift/issues/396)
+
+## Half Installed Kernel Issues
+
+Apt and dpkg fails to purge and fix half installed kernels. First try [linux-purge](https://launchpad.net/linux-purge/+announcement/15313).
+
+``` bash
+sudo linux-purge --fix
+```
+
+If it fails. Check the dpkg status of the packages:
+
+``` bash
+dpkg --status linux-image-3.19.0-22-generic
+dpkg --status linux-image-extra-3.19.0-22-generic
+```
+
+If the output states that the packages are in bad state, i.e. half installed or not fully installed, this means that they have broken apt-get and dpkg respectively.
+
+The entries of the corrupted kernel packages must be deleted manually from the dpkg status file. This does __not delete__ the files. It only __ignores__ them.
+
+``` bash
+# make backup of status file
+sudo cp /var/lib/dpkg/status /var/lib/dpkg/status.backup
+
+# delete ONLY references of the broken packages
+nano /var/lib/dpkg/status
+
+# finally
+sudo apt-get update && sudo apt-get upgrade
+```
+
+[Source](https://askubuntu.com/questions/650732/apt-fails-to-remove-partially-installed-kernel-and-cant-install-any-other-packa)
