@@ -468,3 +468,24 @@ sudo apt-get update && sudo apt-get upgrade
 ```
 
 [Source](https://askubuntu.com/questions/650732/apt-fails-to-remove-partially-installed-kernel-and-cant-install-any-other-packa)
+
+## Held back Upgrades
+
+The most likely culprit is __phased updates__. Its a safety feature. Don't try to outsmart it.
+
+Some users get the upgraded packages first, and have the ability to report broken package, instead of everybody getting a broken package at once and millions of users scratching their heads.
+
+Kept-back packages due to Phased Updates will automatically resolve themselves, download, and install once the package is deemed stable in production usage.
+
+Most users should DO NOTHING. It's not broken. Don't try to force upgrades. Just be patient and let the system work.
+
+#### How to tell if Phased Updates is the culprit:
+
+It's easy. Run `apt-cache policy <package-name>` on one of your held back packages. Look for the `phased` percentage. It's only present if the package is currently phasing.
+
+~~~ bash
+apt-cache policy udev
+...
+ *** 1.20.3-0ubuntu1 500 (phased 40%) <------- There it is!
+...
+~~~

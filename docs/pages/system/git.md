@@ -13,17 +13,16 @@ To stage a file is simply to prepare it finely for a commit. Git, with its index
 
 New files and directories that don't yet exist on any commit. They are out of the whole loop. Even after they're staged. Until a commit is made. They're considered untracked files.
 
-
 ## Userful Commands
 
-``` shell
+```shell
 # list all branches
 git branch
 
 # view git history
 git reflog
 
-# files changed 
+# files changed
 git diff
 
 # commit list
@@ -39,7 +38,7 @@ git commit --amend
 git checkout <hash>
 ```
 
-``` shell
+```shell
 # create a new branch
 git branch <name>
 
@@ -74,7 +73,7 @@ git reset --hard <hash>
 git revert <hash>
 ```
 
-``` bash
+```bash
 # deleting all changes since last commit
 git reset          # unstage everything
 git checkout .     # reset tracked files
@@ -157,15 +156,23 @@ git push --force
 
 This will open up your default text editor with the last commit message. Saving it will update the last commit. The push will override the remote branch with the local branch.
 
+### How do I squash my last N commits together?
+
+```bash
+git reset --soft HEAD~N
+```
+
+This will undo the last N commits. The changes will still be on the branch. This is useful if you want to clean up your commit history without affecting the files.
+
 ## Gitignore
 
 The below excludes all files except the files inside of and the /vendor/laravel/ui dir itself.
 It's mainly about ignoring files in a directory. Then not-ignoring selected directories inside of it. [Source](https://gist.github.com/hieblmedia/9318457)
 
 Remember `/vendor/*` != `/vendor/`. The former keeps the `/vendor/` folder but ignores files inside of it.
-The latter ignores the whole `/vendor/` directory. 
+The latter ignores the whole `/vendor/` directory.
 
-``` bash
+```bash
 # ignore everything inside /vendor/ but not dir itself
 /vendor/*
 
@@ -183,7 +190,7 @@ The latter ignores the whole `/vendor/` directory.
 
 [Source](https://gist.github.com/alexpchin/102854243cd066f8b88e)
 
-``` bash
+```bash
 # first init
 git init
 
@@ -237,16 +244,16 @@ ssh -T git@github.com
 
 To put your submodule code back into the main repository, you just need to remove the submodule and re-add the files into the main repo:
 
-``` bash
+```bash
 # delete reference to submodule HEAD (no trailing slash)
 git rm --cached submodule_path
 
 # if more than one submodule in repo, edit, don't delete
-git rm .gitmodules             
+git rm .gitmodules
 rm -rf submodule_path/.git
 
 # add then commit the newly unmoduled files
-git add .         
+git add .
 git commit -m "remove submodule"
 ```
 
@@ -283,4 +290,4 @@ trap "ssh-agent -k" exit
 ```
 
 !!! info ""
-    **Always remember to kill what you start.**
+**Always remember to kill what you start.**
