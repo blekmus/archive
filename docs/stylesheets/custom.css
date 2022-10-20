@@ -147,7 +147,7 @@
 /* admonition with title topbar */
 .md-typeset :is(.tip, .hint, .important) > :is(.admonition-title, summary) {
   background-color: #175c521a;
-  border-color: #8af6e6;
+  border-color: #111b29;
 }
 
 .md-typeset :is(.warning, .attention, .caution) > :is(.admonition-title, summary) {
@@ -165,7 +165,7 @@
 
 /* admonition left border */
 .md-typeset :is(.admonition, details):is(.tip, .hint, .important) {
-  border-color: #8af6e6;
+  border-color: #111b29;
 }
 
 .md-typeset :is(.admonition, details):is(.warning, .attention, .caution) {

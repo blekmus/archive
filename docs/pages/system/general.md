@@ -489,3 +489,24 @@ apt-cache policy udev
  *** 1.20.3-0ubuntu1 500 (phased 40%) <------- There it is!
 ...
 ~~~
+
+## Binary Executables
+
+To run binary executables from the terminal without having to specify the full path, you can add the directory containing the executable to the `PATH` environment variable. This can be done mainly in two ways.
+
+First by adding the path of the executable into your respective shell's config file. 
+
+``` bash
+# bash
+echo "export PATH=$PATH:/path/to/executable" >> ~/.bashrc
+
+# fish
+echo "set -gx PATH $PATH /path/to/executable" >> ~/.config/fish/config.fish
+```
+
+Second by moving the executable into a directory that is already in the `PATH` variable. Like `/usr/local/bin`. This is the recommended way. 
+
+``` bash
+sudo mv /path/to/executable /usr/local/bin
+```
+
