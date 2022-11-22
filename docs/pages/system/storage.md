@@ -40,3 +40,89 @@ do
   kill -9 "$line"
 done < "$input"
 ```
+
+## Recursive File Delete
+
+To delete a specific file recursively from current directory and all sub directories
+
+``` bash
+find . -name "*.bak" -type f -delete
+
+# run this first just to be safe
+# it will list all files to be deleted
+find . -name "*.bak" -type f
+```
+
+Make sure that `-delete` is the last argument of the command. If you put it before the `-name *.bak` argument, it will __delete everything__.
+
+## Site Permissions
+
+Site permissions when popping up a new site.
+
+```bash
+sudo chown -R www-data:www-data loc/
+sudo chmod -R 774 loc/
+```
+
+## Manual Fonts
+
+For a single user place fonts in:
+
+```sh
+~/.local/share/fonts
+```
+
+For system-wide fonts place them in:
+
+```sh
+/usr/local/share/fonts
+
+# don't touch this
+# it's only for pacman
+/usr/share/fonts/
+```
+
+
+## Tar
+
+Compress a file into zst. You need `zstd` installed.
+
+```bash
+tar acf files.tar.zst files/
+```
+
+Decompress a file from zst
+
+```bash
+tar axf files.tar.zst
+```
+
+## Specific Sized Files
+
+Create a file with a specific size. Write the size as `5M` or `10G`.
+
+```bash
+truncate -s <size> <file.txt>
+```
+
+
+
+## Binary Executables
+
+To run binary executables from the terminal without having to specify the full path, you can add the directory containing the executable to the `PATH` environment variable. This can be done mainly in two ways.
+
+First by adding the path of the executable into your respective shell's config file. 
+
+``` bash
+# bash
+echo "export PATH=$PATH:/path/to/executable" >> ~/.bashrc
+
+# fish
+echo "set -gx PATH $PATH /path/to/executable" >> ~/.config/fish/config.fish
+```
+
+Second by moving the executable into a directory that is already in the `PATH` variable. Like `/usr/local/bin`. This is the recommended way. 
+
+``` bash
+sudo mv /path/to/executable /usr/local/bin
+```

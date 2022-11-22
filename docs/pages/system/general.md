@@ -7,9 +7,6 @@ cat "/proc/version"
 # connect to a docker container terminal
 docker exec -it <cont> bash
 
-# find a keyword from an output
-grep '<keyword(s)>'
-
 # strip and output only the selected column
 awk '{print $<col_num>}'
 
@@ -26,33 +23,9 @@ cdh
 
 # remove ssh key password
 ssh-keygen -p -f ~/.ssh/id_rsa
-```
 
-## Site Permissions
-
-Site permissions when popping up a new site.
-
-```bash
-sudo chown -R www-data:www-data loc/
-sudo chmod -R 774 loc/
-```
-
-## Manual Fonts
-
-For a single user place fonts in:
-
-```sh
-~/.local/share/fonts
-```
-
-For system-wide fonts place them in:
-
-```sh
-/usr/local/share/fonts
-
-# don't touch this
-# it's only for pacman
-/usr/share/fonts/
+# service specific logs
+journalctl -eu <service> 
 ```
 
 [Source](https://wiki.archlinux.org/title/Fonts#Manual_installation)
@@ -217,20 +190,6 @@ gpg --output <public.pgp> --armor --export -r <recipient>
 gpg --output <private.pgp> --armor --export-secret-key -r <recipient>
 ```
 
-## Tar
-
-Compress a file into zst. You need `zstd` installed.
-
-```bash
-tar acf files.tar.zst files/
-```
-
-Decompress a file from zst
-
-```bash
-tar axf files.tar.zst
-```
-
 ## WSL
 
 If this error comes up `[process exited with code 4294967295]` run this. [Source](https://github.com/microsoft/WSL/issues/5092)
@@ -292,14 +251,6 @@ Edit the following file to change default mimetype default application. [Source]
 
 ```bash
 micro "~/.config/mimeapps.list"
-```
-
-## Specific Sized Files
-
-Create a file with a specific size. Write the size as `5M` or `10G`.
-
-```bash
-truncate -s <size> <file.txt>
 ```
 
 ## Kitty Terminal
@@ -490,23 +441,4 @@ apt-cache policy udev
 ...
 ~~~
 
-## Binary Executables
-
-To run binary executables from the terminal without having to specify the full path, you can add the directory containing the executable to the `PATH` environment variable. This can be done mainly in two ways.
-
-First by adding the path of the executable into your respective shell's config file. 
-
-``` bash
-# bash
-echo "export PATH=$PATH:/path/to/executable" >> ~/.bashrc
-
-# fish
-echo "set -gx PATH $PATH /path/to/executable" >> ~/.config/fish/config.fish
-```
-
-Second by moving the executable into a directory that is already in the `PATH` variable. Like `/usr/local/bin`. This is the recommended way. 
-
-``` bash
-sudo mv /path/to/executable /usr/local/bin
-```
 
