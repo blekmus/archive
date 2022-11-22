@@ -120,9 +120,9 @@ dest = fail2ban
 ## Troubleshooting
 
 !!! error ""
- When encountering potential ufw conflicts resulting in _already banned_ errors. Check[^1]. 
+    When encountering potential ufw conflicts resulting in _already banned_ errors. Check[^1]. 
  
- Also check out ufw's OpenSSH app. Cos that's the reference fail2ban uses to ban stuff[^2].
+    Also check out ufw's OpenSSH app. Cos that's the reference fail2ban uses to ban stuff[^2].
 
 [^1]: https://askubuntu.com/questions/54771/potential-ufw-and-fail2ban-conflicts
 [^2]: https://www.fail2ban.org/wiki/index.php/FAQ_english

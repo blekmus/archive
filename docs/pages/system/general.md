@@ -25,7 +25,7 @@ cdh
 ssh-keygen -p -f ~/.ssh/id_rsa
 
 # service specific logs
-journalctl -eu <service> 
+journalctl -eu <service>
 ```
 
 [Source](https://wiki.archlinux.org/title/Fonts#Manual_installation)
@@ -50,11 +50,11 @@ Is root locked? If so, how do I unlock it?
 
 Focus on the second column of this command. L means locked. P means there's a password or a password can be set.
 
-``` bash
+```bash
 # check
 sudo passwd -S root  # root P 09/02/2022 0 99999 7 -1
 
-# unlock 
+# unlock
 sudo usermod -U root
 sudo passwd root
 ```
@@ -62,12 +62,14 @@ sudo passwd root
 ### Sudo access
 
 At the end of `/etc/sudoers` there is what appears to be a comment:
+
 ```
 #includedir /etc/sudoers.d
 ```
 
 This includes sudo rules from files inside of `/etc/sudoers.d`. Here are some examples of rules that could be included in those files and what they mean.
-``` bash
+
+```bash
 # user ubuntu can run sudo without a password
 ubuntu ALL=(ALL) NOPASSWD:ALL
 
@@ -79,12 +81,14 @@ ubuntu ALL=(ALL) NOPASSWD:ALL
 ```
 
 Always use `visudo` to make edits to all of the mentioned files
-``` bash
+
+```bash
 sudo visudo -f /etc/sudoers.d/90-cloud-init-users
 ```
 
 Once you're done making edits, restart sudo to apply the changes
-``` bash
+
+```bash
 sudo service sudo restart
 ```
 
@@ -273,7 +277,6 @@ Add directory to PATH
 fish_add_path /path/to/dir
 ```
 
-
 ### Sudo errors
 
 When trying to `su` or running `sudo`, this error is given:
@@ -282,8 +285,7 @@ When trying to `su` or running `sudo`, this error is given:
 su: failed to execute /usr/local/bin/fish: No such file or directory
 ```
 
-This happens when `/etc/passwd` has `/usr/local/bin/fish` as the user's default shell but that shell path doesn't exist. To fix it become root by using `sudo bash`. Then manually clean  `/etc/passwd` of all traces of the non existent path.
-
+This happens when `/etc/passwd` has `/usr/local/bin/fish` as the user's default shell but that shell path doesn't exist. To fix it become root by using `sudo bash`. Then manually clean `/etc/passwd` of all traces of the non existent path.
 
 ## Firefox
 
@@ -303,7 +305,6 @@ You can simply change the touchpad speed or how fast the cursor moves from the s
 
 First get the touchpad size
 
-    
 ```bash
 libinput list-devices | grep Size
 ```
@@ -335,7 +336,7 @@ reboot
 
 ## Extract Python Requirements
 
-``` py3
+```py3
 # install tool
 python3 -m pip install -U pipreqs
 
@@ -347,7 +348,7 @@ pipreqs .
 
 Setting up separate logging for cron. This however will not log the outputs of cron jobs. This is only for the cron process itself.
 
-``` bash
+```bash
 # open this file
 micro /etc/rsyslog.d/50-default.conf
 
@@ -372,15 +373,16 @@ This will redirect all standard output and errors that may be produced by the sc
 
 ## Timeshift Backups
 
-If automated backups aren't being created even if Timeshift is completely configured. A service called `cronie` might be disabled. 
+If automated backups aren't being created even if Timeshift is completely configured. A service called `cronie` might be disabled.
 
-``` bash
-systemctl enable cronie.service 
-systemctl start cronie.service 
+```bash
+systemctl enable cronie.service
+systemctl start cronie.service
 ```
 
 That should hopefully solve this issue. To check if there's a problem with the Timeshift configuration itself.
-``` bash
+
+```bash
 sudo timeshift --check --scripted
 ```
 
@@ -392,22 +394,22 @@ Running this command will create a snapshot if one is due. You can see if this d
 
 Apt and dpkg fails to purge and fix half installed kernels. First try [linux-purge](https://launchpad.net/linux-purge/+announcement/15313).
 
-``` bash
+```bash
 sudo linux-purge --fix
 ```
 
 If it fails. Check the dpkg status of the packages:
 
-``` bash
+```bash
 dpkg --status linux-image-3.19.0-22-generic
 dpkg --status linux-image-extra-3.19.0-22-generic
 ```
 
 If the output states that the packages are in bad state, i.e. half installed or not fully installed, this means that they have broken apt-get and dpkg respectively.
 
-The entries of the corrupted kernel packages must be deleted manually from the dpkg status file. This does __not delete__ the files. It only __ignores__ them.
+The entries of the corrupted kernel packages must be deleted manually from the dpkg status file. This does **not delete** the files. It only **ignores** them.
 
-``` bash
+```bash
 # make backup of status file
 sudo cp /var/lib/dpkg/status /var/lib/dpkg/status.backup
 
@@ -422,7 +424,7 @@ sudo apt-get update && sudo apt-get upgrade
 
 ## Held back Upgrades
 
-The most likely culprit is __phased updates__. Its a safety feature. Don't try to outsmart it.
+The most likely culprit is **phased updates**. Its a safety feature. Don't try to outsmart it.
 
 Some users get the upgraded packages first, and have the ability to report broken package, instead of everybody getting a broken package at once and millions of users scratching their heads.
 
@@ -434,11 +436,9 @@ Most users should DO NOTHING. It's not broken. Don't try to force upgrades. Just
 
 It's easy. Run `apt-cache policy <package-name>` on one of your held back packages. Look for the `phased` percentage. It's only present if the package is currently phasing.
 
-~~~ bash
+```bash
 apt-cache policy udev
 ...
  *** 1.20.3-0ubuntu1 500 (phased 40%) <------- There it is!
 ...
-~~~
-
-
+```
