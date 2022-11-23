@@ -2,7 +2,7 @@
 
 Use a recent version of OpenConnect built straight from the [source](https://gitlab.com/openconnect/openconnect). The `sni` flag was introduced in November 2022.
 
-`--no-dlts` flag is used because DLTS works over `UDP` or `SCTP`. Since `UDP` doesn't work with domain spoofing it's turned off on `ocserv`.
+`--no-dtls` flag is used because DTLS only works over `UDP` or `SCTP`. Since `UDP` doesn't work with domain spoofing it's turned off on `ocserv`.
 
 ``` r
 sudo openconnect <vpn-domain>:443 --sni <sni-domain> --no-dtls
