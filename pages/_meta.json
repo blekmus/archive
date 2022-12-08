@@ -1,0 +1,42 @@
+{
+  "index": {
+    "title": "Home",
+    "theme": {
+      "pagination": false,
+      "footer": false,
+      "toc": false
+    }
+  },
+  "-- Pages --": {
+    "type": "separator",
+    "title": "Docs"
+  },
+  "general": {
+    "title": "General",
+    "theme": {
+      "pagination": false,
+      "footer": false
+    }
+  },
+  "applications": {
+    "title": "Applications",
+    "theme": {
+      "pagination": false,
+      "footer": false
+    }
+  },
+  "other": {
+    "title": "Other",
+    "theme": {
+      "pagination": false,
+      "footer": false
+    }
+  },
+  "tools": {
+    "title": "Tools",
+    "theme": {
+      "pagination": false,
+      "footer": false
+    }
+  }
+}

@@ -1,0 +1,75 @@
+## Half Installed Kernel Issues
+
+Apt and dpkg fails to purge and fix half installed kernels. First try [linux-purge](https://launchpad.net/linux-purge/+announcement/15313).
+
+```bash
+sudo linux-purge --fix
+```
+
+If it fails. Check the dpkg status of the packages:
+
+```bash
+dpkg --status linux-image-3.19.0-22-generic
+dpkg --status linux-image-extra-3.19.0-22-generic
+```
+
+If the output states that the packages are in bad state, i.e. half installed or not fully installed, this means that they have broken apt-get and dpkg respectively.
+
+The entries of the corrupted kernel packages must be deleted manually from the dpkg status file. This does **not delete** the files. It only **ignores** them.
+
+```bash
+# make backup of status file
+sudo cp /var/lib/dpkg/status /var/lib/dpkg/status.backup
+
+# delete ONLY references of the broken packages
+nano /var/lib/dpkg/status
+
+# finally
+sudo apt-get update && sudo apt-get upgrade
+```
+
+[Source](https://askubuntu.com/questions/650732/apt-fails-to-remove-partially-installed-kernel-and-cant-install-any-other-packa)
+
+## Held back Upgrades
+
+The most likely culprit is **phased updates**. Its a safety feature. Don't try to outsmart it.
+
+Some users get the upgraded packages first, and have the ability to report broken package, instead of everybody getting a broken package at once and millions of users scratching their heads.
+
+Kept-back packages due to Phased Updates will automatically resolve themselves, download, and install once the package is deemed stable in production usage.
+
+Most users should DO NOTHING. It's not broken. Don't try to force upgrades. Just be patient and let the system work.
+
+#### How to tell if Phased Updates is the culprit:
+
+It's easy. Run `apt-cache policy <package-name>` on one of your held back packages. Look for the `phased` percentage. It's only present if the package is currently phasing.
+
+``` bash
+apt-cache policy udev
+...
+ *** 1.20.3-0ubuntu1 500 (phased 40%) <------- There it is!
+...
+```
+
+## Flatpak
+
+Flatpak runs all its applications in sandboxed containers. They don't have access to a user's home directory nor system files. This is made to ensure security.
+
+This however means Flatpak apps don't have access to system GTK themes as well. 
+
+To force them to use Flatpak themes you first need a `$HOME/.themes` directory with your themes in it. If it doesn't exist that means either your current themes are at `/usr/share/themes` or `/.local/share/themes`. This is because flatpack blacklists certain system directories, which includes `/usr/share/themes`.
+
+Once the themes are at `~/.themes`, give all Flatpaks access to that specific directory and set their theme
+
+``` shell
+sudo flatpak override --filesystem=$HOME/.themes
+sudo flatpak override --env=GTK_THEME=<theme-name> 
+```
+
+In case of emergency this reverts all changes
+
+```
+sudo flatpak override --reset
+```
+
+Using [Flatseal](https://github.com/tchx84/flatseal) is highly recommended for anything related to configuration changes with Flatpaks.

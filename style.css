@@ -1,0 +1,153 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.dark {
+  --nextra-primary-hue: 194deg !important;
+}
+
+code, kbd, samp, pre {
+  font-family: "Fira Code", "ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New", "monospace" !important;
+}
+
+*:focus {
+  outline-color: none !important;
+}
+
+*:focus-visible {
+  outline: solid #3db4f2 2px !important;
+}
+
+/* primary text accent color */
+.nx-text-primary-500 {
+  color: #3db4f2 !important;
+}
+
+/* theme text color */
+html[class~="dark"] body {
+  color: #cadcec !important;
+}
+
+/* remove anchor underlines */
+a.nx-underline {
+ text-decoration-line: none !important; 
+}
+
+/* hr color */
+hr {
+  border-color: #94afff0d !important;
+}
+
+/* inline code styles */
+html[class~="dark"] code {
+  background-color: rgba(106, 106, 106, 0.1) !important;
+  border: none;
+}
+
+/* ugly search bar border on focus */
+a:focus-visible, summary:focus-visible, button:focus-visible, input:focus-visible, [tabindex]:not([tabindex="-1"]):focus-visible {
+  --tw-ring-offset-shadow: none !important;
+  --tw-ring-shadow: none !important;
+}
+
+/* codebox background */
+html[class~="dark"] .dark\:nx-bg-primary-300\/10 {
+  background-color: #141518 !important;
+}
+
+/* codebox styles */
+.dark {
+  --shiki-color-text: #ecc1db !important;
+  --shiki-token-function: #9785f0 !important;
+  --shiki-token-string-expression: #47d66b !important;
+  --shiki-token-comment: #697e97 !important;
+  --shiki-token-keyword: #f85263 !important;
+}
+
+pre {
+  font-weight: 400 !important;
+  border-radius: 8px !important;
+}
+
+/* code box with title */
+[data-rehype-pretty-code-fragment] > div {
+  border-bottom: solid 1px #4b556369;
+  font-weight: bold;
+  color: #cadcec !important;
+}
+
+html[class~="dark"] .nextra-callout.dark\:nx-bg-yellow-700\/30 {
+  background-color: rgba(161, 98, 7, 0.09) !important;
+}
+
+.nextra-callout {
+  border: none !important;
+  font-size: 14px;
+  padding-top: 0.9rem !important;
+  padding-bottom: 0.9rem !important;
+}
+
+.nextra-callout p {
+  line-height: 1.6 !important;
+}
+
+
+/* table styles */
+table {
+  font-size: 0.9rem !important;
+}
+tbody {
+  background-color: #141518;
+}
+tr {
+  background: none !important;
+}
+td, th {
+  border-color: #4b556369 !important;
+}
+
+
+
+.steps-container {
+  margin-left: 1rem;
+  padding-left: 1.5rem;
+  counter-reset: step;
+  border-left: 1px solid;
+  border-color: rgb(229 231 235/1);
+  margin-bottom: 3rem;
+}
+.steps-container h3 {
+  counter-increment: step;
+}
+
+.steps-container h3:first-of-type:before {
+  margin-top: 0px;
+}
+
+.steps-container h3:before {
+  content: counter(step);
+  display: inline-block;
+  position: absolute;
+  margin-top: 3px;
+  margin-left: -41px;
+  width: 33px;
+  height: 33px;
+  text-align: center;
+  text-indent: -1px;
+  color: #999;
+  border-radius: 100%;
+  border: 4px solid #fff;
+  background: #f3f3f3;
+  line-height: 1.5rem;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.dark .steps-container {
+  border-color: #2e2e2e;
+}
+.dark .steps-container h3:before {
+  color: #999;
+  border: 4px solid rgba(17, 17, 17, var(--tw-bg-opacity));
+  background: #2e2e2e;
+}

@@ -1,0 +1,17 @@
+## Commands
+
+| Syntax                       | Description                     |
+| -----------                  | -----------                     |
+| `veracrypt -t -l`            | view mounted volumes            |
+| `veracrypt -t -d <path>`     | unmount all (if no path given)  |
+
+import {Red} from '@components/red'
+
+## <Red>Troubleshooting</Red>
+
+If this occurs, check [this](https://askubuntu.com/questions/429612/device-mapper-remove-ioctl-on-luks-xxxx-failed-device-or-resource-busy).
+
+``` ini
+lsof: no pwd entry for UID 201 x forever
+mount gives device-mapper: create ioctl failed
+```

@@ -1,3 +1,0 @@
-## Syncing Issues
-
-When you add new calendar. You need to enable it [here](https://calendar.google.com/calendar/syncselect). Weird but yes.

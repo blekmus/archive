@@ -1,0 +1,19 @@
+## Sync two folders
+
+[Source](https://unix.stackexchange.com/questions/203846/how-to-sync-two-folders-with-command-line-tools)
+
+~~~ bash 
+# puts folder A into folder B
+rsync -avuc --delete "/home/user/A" "/home/user/B"
+
+# puts contents of folder A to folder B
+rsync -avuc --delete "/home/user/A/" "/home/user/B"
+~~~
+
+~~~
+-a       - do the sync preserving all filesystem attributes
+-v       - run verbosely
+-u       - only copy files with a newer modification time (or size difference if the times are equal)
+-c       - checksum both folders before transferring for cases where above fails
+--delete - delete the files in target folder that do not exist in the source
+~~~

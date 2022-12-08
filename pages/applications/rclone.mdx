@@ -1,0 +1,41 @@
+## Usual Command
+
+``` bash
+rclone copy source:path dest:path -vvv -P --log-file "copy.log" --transfers 5 --dry-run
+```
+``` bash
+-P           - Interactive download progress
+-vvv         - Verbose logfile output
+--log-file   - Logfile location
+--dry-run    - Testing before the real thing
+--transfers  - Number of concurrent transfers
+```
+
+import { Tab, Tabs } from 'nextra-theme-docs'
+ 
+<Tabs items={['5-15GB', '5-20GB', '20-30GB']}>
+  <Tab>
+    8 concurrent transfers on 1GB RAM
+  </Tab>
+  <Tab>
+    6 concurrent transfers on 1GB RAM
+  </Tab>
+  <Tab>
+    5 concurrent transfers on 1GB RAM
+  </Tab>
+</Tabs>
+
+
+import {Warning} from '@components/warning'
+
+<Warning>
+    Concurrent transfers directly affect RAM. On top of that, if there's too much resource usage, rclone auto kills itself.
+</Warning>
+
+## Web UI
+
+Rclone comes prebuilt with an experimental web UI. Use the following command to run an instance of it.
+
+``` bash
+rclone rcd --rc-web-gui
+```
