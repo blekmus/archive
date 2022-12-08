@@ -1,4 +1,4 @@
-import { Callout } from 'nextra-theme-docs'
+import { Warning } from '@components/callouts'
 
 ## Client
 
@@ -10,9 +10,9 @@ Use a recent version of OpenConnect built straight from the [source](https://git
 sudo openconnect <vpn-domain>:443 --sni <sni-domain> --no-dtls
 ```
 
-<Callout type="warning" emoji="">
+<Warning>
     If __ipv6 is enabled__ on the client and disabled on ocserv, all ipv6 traffic would go around the tunnel. To prevent this either disable ipv6 traffic on the client or enable it on ocserv. The prior is recommended.
-</Callout>
+</Warning>
 
 ## Requirements
 

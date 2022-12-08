@@ -1,4 +1,4 @@
-import { Callout } from 'nextra-theme-docs'
+import { Warning, Error } from '@components/callouts'
 
 ## Setup
 
@@ -123,9 +123,9 @@ mysqldump -u <username> -p <db-name> > /path/to/file.sql
 mysqldump -u root -p --all-databases > ./mariadb.dump
 ```
 
-<Callout type="warning" emoji="">
+<Warning>
   Try not to use the root user as much as possible. Except when making full db backups. Use a user who has deligated access to the database that is to be backed up.
-</Callout>
+</Warning>
 
 To import;
 
@@ -138,7 +138,7 @@ mysql <db-name> < /path/to/file.sql
 
 ## MongoDB
 
-<Callout type="error" emoji="">
+<Error>
   If you get an error like `pymongo.errors.ServerSelectionTimeoutError`. Check if the current ip address is allowed in the dashboard. [Source](https://pythonexamples.org/pymongo-errors-serverselectiontimeouterror/)
-</Callout>
+</Error>
 

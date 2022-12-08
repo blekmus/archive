@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 
 const config: DocsThemeConfig = {
   logo: (
-    <span>
+    <span style={{color: 'white'}}>
       <b>Archive</b>
     </span>
   ),

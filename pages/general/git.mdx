@@ -1,4 +1,4 @@
-import { Callout } from 'nextra-theme-docs'
+import { Warning } from '@components/callouts'
 
 ## Terminology
 
@@ -291,6 +291,6 @@ DISPLAY=:0 SSH_ASKPASS="/abs/path/.ask-pass" ssh-add ~/.ssh/<key-name>
 trap "ssh-agent -k" exit
 ```
 
-<Callout type="warning" emoji="">
+<Warning>
     Always remember to kill what you start
-</Callout>
+</Warning>
