@@ -16,13 +16,13 @@ sudo mysql_secure_installation
 
 ``` sql
 -- create db
-CREATE DATABASE <db-name>;
+CREATE DATABASE <dbname>;
 
 -- create user
 CREATE USER '<username>'@localhost IDENTIFIED BY '<password>';
 
 -- grant privileges
-GRANT ALL PRIVILEGES ON <db-name>.* TO '<username>'@localhost;
+GRANT ALL PRIVILEGES ON <dbname>.* TO '<username>'@localhost;
 
 -- save grant changes
 FLUSH PRIVILEGES;
@@ -30,7 +30,7 @@ FLUSH PRIVILEGES;
 
 ``` sql
 -- select db
-USE <db-name>;
+USE <dbname>;
 
 -- create table
 CREATE table <table-name> (
@@ -48,7 +48,7 @@ CREATE table <table-name> (
 DROP USER '<user-name>'@localhost;
 
 -- drop database
-DROP DATABASE <db-name>;
+DROP DATABASE <dbname>;
 ```
 
 ### Displaying
@@ -61,7 +61,7 @@ SELECT User FROM mysql.user;
 SHOW DATABASES;
 
 -- display tables
-USE <db-name>;
+USE <dbname>;
 SHOW TABLES;
 ```
 
@@ -72,8 +72,8 @@ SHOW GRANTS FOR '<username>'@localhost;
 
 ``` sql
 -- display table columns
-DESC <db-name>.<table-name>;
-SHOW COLUMNS FROM <db-name>.<table-name>;
+DESC <dbname>.<table-name>;
+SHOW COLUMNS FROM <dbname>.<table-name>;
 
 -- display table columns of selected table
 DESC <table-name>;
@@ -93,7 +93,7 @@ SELECT col FROM db \G;
 ``` sql
 -- alter column type
 -- doesn't replace unless values in colums are compatible
-use <db-name>;
+use <dbname>;
 alter table <tablename> modify column <columname> <typename>;
 ```
 
@@ -114,10 +114,10 @@ To backup;
 
 ``` bash
 # scripts
-mysqldump -u <username> -p"<pass>" <db-name> > /path/to/file.sql
+mysqldump -u <username> -p"<pass>" <dbname> > /path/to/file.sql
 
 # shell
-mysqldump -u <username> -p <db-name> > /path/to/file.sql
+mysqldump -u <username> -p <dbname> > /path/to/file.sql
 
 # full db backup
 mysqldump -u root -p --all-databases > ./mariadb.dump
@@ -133,7 +133,7 @@ To import;
 # first create db in mysql
 # then import data to it
 
-mysql <db-name> < /path/to/file.sql
+mysql <dbname> < /path/to/file.sql
 ```
 
 ## MongoDB
