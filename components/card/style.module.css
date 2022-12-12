@@ -13,7 +13,7 @@
 
 .card svg {
   width: 1.5rem;
-  color: #00000033;
+  color: #ffffff66;
   transition: color 0.3s ease;
 }
 
@@ -27,9 +27,6 @@
   align-items: flex-start;
 }
 
-:global(.dark) .card svg {
-  color: #ffffff66;
-}
-:global(.dark) .card:hover svg {
+/* :global(.dark) .card:hover svg {
   color: currentColor;
-}
+} */

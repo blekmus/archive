@@ -2,18 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
+
+::selection {
+  background: #ff499b4c; /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+  background: #ff499b4c; /* Gecko Browsers */
+}
+
+
+/* primary accent color of the site */
 .dark {
   --nextra-primary-hue: 194deg !important;
 }
 
+/* code font family set to fire code */
 code, kbd, samp, pre {
   font-family: "Fira Code", "ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New", "monospace" !important;
 }
 
+/* outline when clicked */
 *:focus {
   outline-color: none !important;
 }
 
+/* focused when tabbing through elements */
 *:focus-visible {
   outline: solid #3db4f2 2px !important;
 }
