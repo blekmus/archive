@@ -355,3 +355,18 @@ Running this command will create a snapshot if one is due. You can see if this d
 
 [Source](https://github.com/teejee2008/timeshift/issues/396)
 
+## Wireguard
+
+``` bash
+Error: IPv6 is disabled on nexthop device.
+```
+
+If you get this error when running `sudo wg-quick up <interface>`. This means that an ipv6 address is mentioned in the config file at `/etc/wireguard/<interface>`. This isn't a problem if the client device has ipv6 enabled. But if it's disabled then this error will come up. To fix this, simply remove the ipv6 address from the config's `AllowedIPs`.
+
+``` ini
+; before
+AllowedIPs = 0.0.0.0/0, ::/0
+
+; after
+AllowedIPs = 0.0.0.0/0
+```
