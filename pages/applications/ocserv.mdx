@@ -1,4 +1,4 @@
-import { Warning } from '@components/callouts'
+import { Warning } from "@components/callouts";
 
 ## Client
 
@@ -6,37 +6,39 @@ Use a recent version of OpenConnect built straight from the [source](https://git
 
 `--no-dtls` flag is used because DTLS only works over `UDP` or `SCTP`. Since `UDP` doesn't work with domain spoofing it's turned off on `ocserv`.
 
-``` r
+```r
 sudo openconnect <vpn-domain>:443 --sni <sni-domain> --no-dtls
 ```
 
 <Warning>
-    If __ipv6 is enabled__ on the client and disabled on ocserv, all ipv6 traffic would go around the tunnel. To prevent this either disable ipv6 traffic on the client or enable it on ocserv. The prior is recommended.
+  If __ipv6 is enabled__ on the client and disabled on ocserv, all ipv6 traffic
+  would go around the tunnel. To prevent this either disable ipv6 traffic on the
+  client or enable it on ocserv. The prior is recommended.
 </Warning>
 
 ## Requirements
 
-First of all disable __firewalls__ like UFW to make sure you don't run into any unexpected issues with the initial configuration. After that point a subdomain to the server ip. A subdomain is required for this to work.
+First of all disable **firewalls** like UFW to make sure you don't run into any unexpected issues with the initial configuration. After that point a subdomain to the server ip. A subdomain is required for this to work.
 
 Install the necessary requirements
 
-``` bash
+```bash
 sudo apt install ocserv certbot iptables
 ```
 
 Generate SSL certificate for the vpn domain. Replace `<email>` and `<vpn-domain>`
 
-``` bash
+```bash
 sudo certbot certonly --standalone --preferred-challenges http --agree-tos --email <email> -d <vpn-domain>
 ```
 
 ## Configure Server
 
-Configure ocserv located at `/etc/ocserv/ocserv.conf`. 
+Configure ocserv located at `/etc/ocserv/ocserv.conf`.
 
 Do these changes to the file. Leave all other rules untouched. Check if there are duplicate rules at the end of file, comment them.
 
-``` ini
+```ini
 # use user+pass auth when connecting using openconnect
 auth = "plain[passwd=/etc/ocserv/ocpasswd]"
 
@@ -61,32 +63,34 @@ dns = 8.8.8.8
 dns = 1.1.1.1
 
 # comment all of the route parameters
-#route = 10.0.0.0/8
-#route = 172.16.0.0/12
-#route = 192.168.0.0/16
-#route = fd00::/8
-#route = default
-#no-route = 192.168.5.0/255.255.255.0
+route = 10.0.0.0/8
+route = 172.16.0.0/12
+route = 192.168.0.0/16
+route = fd00::/8
+route = default
+no-route = 192.168.5.0/255.255.255.0
+
+# set this to false
+isolate-workers=false
 ```
 
 Finally restart ocserv to update the changes
 
-``` bash
+```bash
 sudo systemctl restart ocserv
 ```
 
 Set ocserv user `<username>` and password
 
-``` bash
+```bash
 sudo ocpasswd -c /etc/ocserv/ocpasswd <username>
 ```
 
 ## Enable ip forwarding
 
-
 For ocserv to route packets between clients and the internet, IPs need to be forwarded. Edit `/etc/sysctl.conf` and uncomment this line
 
-``` bash
+```bash
 net.ipv4.ip_forward=1
 
 # save
@@ -97,30 +101,28 @@ sysctl -p
 
 There are two ways to configure the firewall. One is through `iptables` itself and the other is using `UFW`.
 
-
 ### Using iptables
 
 Find the `<interface>` from `ifconfig` or `ip addr`. It should be something like `eth0`
 
-``` bash
+```bash
 iptables -t nat -A POSTROUTING -o <interface> -j MASQUERADE
 ```
 
 To make the table rules persistent across reboots using this
 
-``` bash
+```bash
 apt-get -y install iptables-persistent
 dpkg-reconfigure iptables-persistent
 ```
 
 ### Using UFW
 
-
 Find the `<interface>` from `ifconfig` or `ip addr`. Edit the UFW startup config `/etc/ufw/before.rules.`
 
 Add this to the end of the file.
 
-``` r
+```r
 # NAT table rules
 *nat
 :POSTROUTING ACCEPT [0:0]
@@ -135,10 +137,20 @@ COMMIT
 
 Add these after the `allow forwarding for trusted network` comment.
 
-``` r
+```r
 # allow forwarding for trusted network
 -A ufw-before-forward -s 10.12.0.0/24 -j ACCEPT
 -A ufw-before-forward -d 10.12.0.0/24 -j ACCEPT
 ```
 
 Finally restart UFW.
+
+import { Red } from "@components/red";
+
+## <Red>Troubleshooting</Red>
+
+```bash
+The futex facility returned an unexpected error code.
+```
+
+If you get this error on the client side and it throws a 502 fit. Then change `isolate-workers=true` to `isolate-workers=false` in the ocserv config. The rightful solution is to upgrade ocserv. But we all know how much of a hassle that is.
