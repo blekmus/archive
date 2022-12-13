@@ -3,14 +3,6 @@
 @tailwind utilities;
 
 
-::selection {
-  background: #ff499b4c; /* WebKit/Blink Browsers */
-}
-::-moz-selection {
-  background: #ff499b4c; /* Gecko Browsers */
-}
-
-
 /* primary accent color of the site */
 .dark {
   --nextra-primary-hue: 194deg !important;
@@ -89,10 +81,9 @@ pre {
   color: #cadcec !important;
 }
 
-html[class~="dark"] .nextra-callout.dark\:nx-bg-yellow-700\/30 {
-  background-color: rgba(161, 98, 7, 0.09) !important;
-}
 
+
+/* callout card styles */
 .nextra-callout {
   border: none !important;
   font-size: 14px;
@@ -100,10 +91,20 @@ html[class~="dark"] .nextra-callout.dark\:nx-bg-yellow-700\/30 {
   padding-bottom: 0.9rem !important;
 }
 
+/* callout text style */
 .nextra-callout p {
   line-height: 1.6 !important;
 }
 
+/* callout warning */
+html[class~="dark"] .nextra-callout.dark\:nx-bg-yellow-700\/30 {
+  background-color: rgba(161, 98, 7, 0.09) !important;
+}
+
+/* callout error */
+html[class~="dark"] .dark\:nx-text-red-200 {
+  color: #fad2d2 !important;
+}
 
 /* table styles */
 table {

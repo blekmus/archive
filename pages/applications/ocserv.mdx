@@ -154,3 +154,11 @@ The futex facility returned an unexpected error code.
 ```
 
 If you get this error on the client side and it throws a 502 fit. Then change `isolate-workers=true` to `isolate-workers=false` in the ocserv config. The rightful solution is to upgrade ocserv. But we all know how much of a hassle that is.
+
+---
+import {Error} from '@components/callouts'
+
+
+<Error>
+  Ocserv __cannot run__ concurrently with nginx on port `443`. Either nginx should only take up port `80` or it should be disabled. Ocserv doesn't work behind a reverse proxy.
+</Error>
