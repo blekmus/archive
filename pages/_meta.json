@@ -4,7 +4,8 @@
     "theme": {
       "pagination": false,
       "footer": false,
-      "toc": false
+      "toc": false,
+      "breadcrumb": false
     }
   },
   "-- Pages --": {

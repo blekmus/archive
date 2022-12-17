@@ -86,13 +86,34 @@ Set ocserv user `<username>` and password
 sudo ocpasswd -c /etc/ocserv/ocpasswd <username>
 ```
 
+## Choosing TCP port
+
+Usually the https port `443` is taken up by apache or nginx. In that case you can use a different port. For example `8443`. To do that edit `/etc/ocserv/ocserv.conf` and change the `tcp-port` to `8443`. Then restart ocserv.
+
+```ini filename="ocserv.conf"
+tcp-port = 8443
+```
+
+```bash
+# restart
+sudo service ocserv restart
+```
+
+<Warning>
+  If you're using a non usual port, make sure the __firewall__ is configured to allow that port.
+</Warning>
+
+
+
 ## Enable ip forwarding
 
 For ocserv to route packets between clients and the internet, IPs need to be forwarded. Edit `/etc/sysctl.conf` and uncomment this line
 
-```bash
+```ini filename="sysctl.conf"
 net.ipv4.ip_forward=1
+```
 
+```bash
 # save
 sysctl -p
 ```
@@ -154,11 +175,3 @@ The futex facility returned an unexpected error code.
 ```
 
 If you get this error on the client side and it throws a 502 fit. Then change `isolate-workers=true` to `isolate-workers=false` in the ocserv config. The rightful solution is to upgrade ocserv. But we all know how much of a hassle that is.
-
----
-import {Error} from '@components/callouts'
-
-
-<Error>
-  Ocserv __cannot run__ concurrently with nginx on port `443`. Either nginx should only take up port `80` or it should be disabled. Ocserv doesn't work behind a reverse proxy.
-</Error>
