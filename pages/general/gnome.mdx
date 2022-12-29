@@ -41,3 +41,13 @@ for i in {1..9}; do gsettings set org.gnome.shell.keybindings switch-to-applicat
 On Manjaro Gnome, if there are files like `Empty Bash`, `Empty Desktop` and `Empty File` on at `~`. That means gnome's default `usr/bin/create-template` is running. Because of it, even if you delete the files. The program recreates them everytime you log back in. 
 
 To stop running it, run `Tweaks` click `Startup Applications` then remove `create-template` from the list.
+
+## Shortcuts / Launchers
+
+App launchers shown in GNOME Activities are located either in `/usr/share/applications/` or `~/.local/share/applications/` as `.desktop` files.
+
+You can hide an individual app launcher from Activities by adding an extra `NoDisplay=true` line to the corresponding .desktop file.
+
+It is generally not advisable to edit the .desktop file located in `/usr/share/applications/`. Instead copy the file to `~/.local/share/applications/` first and make the change to the copied file.
+
+[Source](https://unix.stackexchange.com/questions/404043/gnome-how-to-remove-app-launchers-from-the-activities-menu)
