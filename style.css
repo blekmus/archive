@@ -81,6 +81,10 @@ pre {
   color: #cadcec !important;
 }
 
+div[role="tablist"] {
+  font-size: 0.9rem;
+}
+
 
 
 /* callout card styles */
