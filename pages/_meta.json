@@ -3,7 +3,6 @@
     "title": "Home",
     "theme": {
       "pagination": false,
-      "footer": false,
       "toc": false,
       "breadcrumb": false
     }
@@ -15,29 +14,25 @@
   "general": {
     "title": "General",
     "theme": {
-      "pagination": false,
-      "footer": false
-    }
+      "pagination": false
+      }
   },
   "applications": {
     "title": "Applications",
     "theme": {
-      "pagination": false,
-      "footer": false
+      "pagination": false
     }
   },
   "other": {
     "title": "Other",
     "theme": {
-      "pagination": false,
-      "footer": false
+      "pagination": false
     }
   },
   "tools": {
     "title": "Tools",
     "theme": {
-      "pagination": false,
-      "footer": false
+      "pagination": false
     }
   }
 }

@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 
 const config: DocsThemeConfig = {
   logo: (
-    <span style={{color: 'white'}}>
+    <span style={{ color: "white" }}>
       <b>Archive</b>
     </span>
   ),
@@ -20,8 +20,14 @@ const config: DocsThemeConfig = {
       }}
     />
   ),
+  feedback: {
+    content: null,
+  },
+  editLink: {
+    text: null,
+  },
   project: {
-    link: "https://github.com/blekmus/archive",
+    link: "https://github.com/blekmus/archive/issues",
   },
   docsRepositoryBase: "https://github.com/blekmus/archive",
   useNextSeoProps() {
@@ -32,12 +38,6 @@ const config: DocsThemeConfig = {
       };
     }
   },
-  feedback: {
-    content: null,
-  },
-  editLink: {
-    text: null,
-  },
   sidebar: {
     titleComponent: ({ title, type }) => {
       if (type === "separator") {
@@ -45,12 +45,10 @@ const config: DocsThemeConfig = {
       }
       return <>{title}</>;
     },
-    defaultMenuCollapseLevel: 0,
+    defaultMenuCollapseLevel: 1,
   },
   footer: {
-    text: () => {
-      return <p className="text-sm">© 2022 The Nextra Project.</p>;
-    },
+    component: null,
   },
   darkMode: false,
 };
