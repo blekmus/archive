@@ -29,9 +29,19 @@ code, kbd, samp, pre {
 }
 
 /* theme text color */
-html[class~="dark"] body {
+html[class~="dark"] .dark\:nx-text-slate-100 {
   color: #cadcec !important;
 }
+html[class~="dark"] .nextra-content {
+  color: #cadcec !important;
+}
+
+.dark .dark\:text-neutral-200 {
+  color: #cadcec !important;
+}
+/* html[class~="dark"] body {
+  color: #cadcec !important;
+} */
 
 /* remove anchor underlines */
 a.nx-underline {
