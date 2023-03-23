@@ -72,7 +72,7 @@ Usually there's multiple php config files that exist. So you must figure out whi
 
 However, if you're running both apache and nginx at the same time. There's a possibility that the two are using different `php.ini`'s.
 
-First create a [php-test](../php/#testing) file. Then serve it with the preferred web server.
+First create a [php-test](/general/php#testing) file. Then serve it with the preferred web server.
 
 ### Apache
 
@@ -85,20 +85,16 @@ Remember to route the traffic if you're using an nginx reverse proxy to serve ap
 Create a config file at `/etc/nginx` with the usual php stuff. Then point it towards the test file.
 
 
+## Troubleshooting
 
-## ERROR - 413
+### ERROR - 413
 
-The main causes for `413 files too large` are;
+The error `413 files too large` is usually caused by the web server or php.
 
-1. The web server limits it
-2. PHP limits it
 
-### Web Server Limitations
+##### Apache
 
-#### Apache
-
-Incease the `LimitRequestBody`.
-It can be used in any virtualhost or location directive. Check [here](https://httpd.apache.org/docs/2.2/mod/core.html#limitrequestbody) for more info. You need to convert whatever request size you need into bytes. Use [this](https://convertlive.com/u/convert/megabytes/to/bytes#10) to convert.
+Increase the `LimitRequestBody`. It can be used in any virtualhost or location directive. Check [here](https://httpd.apache.org/docs/2.2/mod/core.html#limitrequestbody) for more info. You need to convert whatever request size you need into bytes. Use [this](https://convertlive.com/u/convert/megabytes/to/bytes#10) to convert. Remeber to restart apache afterwords.
 
 ``` apache
 <Directory "/var/www/site">
@@ -106,47 +102,19 @@ It can be used in any virtualhost or location directive. Check [here](https://ht
 </Directory>
 ```
 
-Afterwords remember to restart apache.
+##### Nginx
 
-``` bash
-sudo service apache2 reload
-```
-
-#### Nginx
-
-This is easy. Just edit the nginx config.
-
-``` bash
-sudo nano /etc/nginx/nginx.conf
-```
-
-Then change this to whatever size you want.
+Increase the `client_max_body_size` at either `/etc/nginx/nginx.conf` or the site config file. Afterwords remember to restart nginx.
 
 ``` nginx
 client_max_body_size 2M;
 ```
 
-Afterwords remember to restart nginx.
+##### PHP
 
-``` bash
-sudo service nginx reload
-```
-
-### PHP Limitations
-
-First figure out which php `.ini` file is [read](../php#config-location).
-
-In it, find and change the below parameters to the size you require.
+First figure out which php `.ini` file is used [here](/general/php#config-location). Change these parameters. Afterwords remember to restart the web server and php-fpm.
 
 ``` ini
 upload_max_filesize = 100M
 post_max_size = 100M
-```
-
-Afterwords remember to restart the web server and php.
-
-``` bash
-sudo service apache2 restart
-sudo service nginx restart
-sudo service phpx.x-fpm restart
 ```

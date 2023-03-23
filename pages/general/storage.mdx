@@ -1,23 +1,38 @@
-## Storage Usage Commands
+import { Warning } from "@components/callouts";
 
-| Syntax        | Description                       |
-| -----------   | -----------                       |
-| `df -h`       | mount file usage and availability |
-| `ncdu`        | storage usage visualization       |
+## Storage Usage
 
-Sorted biggest 10 file in the current dir sub-system.
+Start by running this to see which root path is taking up the most space.
 
-``` bash
-du -ah . | sort -n -r | head -n 10
+``` sh
+du -cha --max-depth=1 / | grep -E "^[0-9\.]*[MG]"
 ```
 
-Sorted biggest 10 dirs of one dir below current dir sub-system.
+The `[MG]` limits the lines to be either MBs or GBs. If your disk is big enough add add `T` as well for TBs.
 
-``` bash
-du -h . --max-depth=2 | sort -n -r | head -n 10
+The command might return some errors on `/proc`, `/sys`, and `/dev` since they are not real files on disk. However, it should still provide valid output for the rest of the directories in root. After finding the biggest directory, rerun the command again narrow down the search.
+
+For example, if `/var` takes up unnecessary space, run this next.
+
+``` sh
+du -cha --max-depth=1 /var | grep -E "^[0-9\.]*[MG]"
 ```
 
-## Unlinked File Storage Hogging
+### Commands 
+
+``` bash
+# 10 largest files in /var
+du -ah /var | sort -n -r | head -n 10
+
+# mount disk usage and availability
+df -h
+
+# storage usage visualization
+ncdu
+```
+
+
+## Unlinked Storage Hogging
 
 Display pid of resources that processes are holding onto even if the origin is deleted.
 
@@ -25,14 +40,13 @@ Display pid of resources that processes are holding onto even if the origin is d
 lsof | grep deleted | awk '{print $2}'
 ```
 
-Applications using unlinked files can be printed using `lsof +L1`.
+Applications using unlinked files can be printed using `lsof +L1`. Removing those files using their ids and killing the processes holding them.
 
-Removing those files using their ids and killing the processes holding them.
-
-``` bash
+``` sh
 # Extract the processes
 lsof | grep deleted | awk '{print $2}' > ids
-
+```
+``` sh
 #!/bin/bash
 input="./ids"
 while IFS= read -r line
@@ -41,7 +55,7 @@ do
 done < "$input"
 ```
 
-## Recursive File Delete
+## Recursive Delete
 
 To delete a specific file recursively from current directory and all sub directories
 
@@ -53,7 +67,9 @@ find . -name "*.bak" -type f -delete
 find . -name "*.bak" -type f
 ```
 
-Make sure that `-delete` is the last argument of the command. If you put it before the `-name *.bak` argument, it will __delete everything__.
+<Warning>
+  Make sure that `-delete` is the last argument of the command. If you put it before the `-name *.bak` argument, it will __delete everything__.
+</Warning>
 
 ## Site Permissions
 
@@ -105,8 +121,6 @@ Create a file with a specific size. Write the size as `5M` or `10G`.
 ```bash
 truncate -s <size> <file.txt>
 ```
-
-
 
 ## Binary Executables
 
