@@ -1,4 +1,4 @@
-# Networking
+import { Red } from '@components/red';
 
 ## Commands
 
@@ -89,21 +89,36 @@ nmcli -p device show | grep "IP4.ADDRESS" # 192.168.8.102/24
 # check if firewalls are disabled, disable if enabled
 sudo ufw status
 ```
-import { Red } from '@components/red';
 
 ## <Red>Troubleshooting</Red>
 
 
-`ssh Received disconnect from port <port>:2: Too many authentication failures`
+#### `ssh Received disconnect from port <port>:2: Too many authentication failures`
 
 One major cause for this error is having multiple keys in your .ssh directory. When encountering this, either specify the key you want to use or add the key to the ssh config.
     
 ``` bash
-ssh -i ~/.ssh/<key> user@host
+ssh -i ~/.ssh/id_rsa user@host
 ```
 
 ``` bash
-Host <host>
-    IdentityFile ~/.ssh/<key>
+Host example.com
+    IdentityFile ~/.ssh/id_rsa
+    IdentitiesOnly=yes
 ```
+
+#### `Error connecting to agent: Permission denied` when trying to run `ssh-add`
+
+First check if the key permissions are correct. You want both the key folder and the key itself to only be readable by the user. This is recommended.
+
+``` bash
+chmod 0700 ~/.ssh
+chmod 600 ~/.ssh/*
+```
+
+If the file's permissions aren't the issue, there can be several other causes. You could have incorrect permissions set on any of the directories ~/.ssh or ~/.ssh/keyfolder (technically also on ~ but then this wouldn't be the only symptom). Use ls -adl to inspect those directories. They should have rwx for you, but --- for both group and world.
+
+Another issue could be (but this is quite rare) is that the ssh-add binary has the setuid bit set, causing it to run as a different user, and hence have no right to read your private key. Use `ls -lh $(which ssh-add)` to inspect this. If it returns an agent instance run by a different user. Kill it running `ssh-agent -k` after logging in as that user.
+
+[Source](https://superuser.com/questions/642972/why-am-i-getting-permission-denied-when-running-ssh-add)
 
