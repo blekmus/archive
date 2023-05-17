@@ -54,3 +54,7 @@ Including attribute with empty quotes does the trick[^1].
 ```
 
 [^1]: https://github.com/facebook/react/issues/3468
+
+## Next x Prisma
+
+If you're encountering an issue where your Prisma client is not working inside the `getServerSideProps` function while using Next.js with Prisma, and you receive the error message "PrismaClient is unable to be run in the browser," it's likely because you're trying to use `getServerSideProps` from within non-page components. They can only be used by files right under the `pages` dir.

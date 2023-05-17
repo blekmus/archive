@@ -23,6 +23,12 @@
       "pagination": false
     }
   },
+  "language": {
+    "title": "Language",
+    "theme": {
+      "pagination": false
+    }
+  },
   "other": {
     "title": "Other",
     "theme": {

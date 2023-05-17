@@ -183,3 +183,7 @@ td, th {
 .nextra-scrollbar li a.nx-font-semibold {
   font-weight: 500;
 }
+
+.nextra-sidebar-container .nextra-scrollbar li.active a {
+  font-weight: 600 !important;
+}
