@@ -48,15 +48,23 @@ a.nx-underline {
  text-decoration-line: none !important; 
 }
 
+a.nx-underline:hover {
+  text-decoration-line: underline !important;
+}
+
+/* a:hover {
+  text-decoration: underline !important;
+} */
+
 /* hr color */
-hr {
+html[class~="dark"] hr {
   border-color: #94afff0d !important;
 }
 
 /* inline code styles */
 html[class~="dark"] code {
   background-color: rgba(106, 106, 106, 0.1) !important;
-  border: none;
+  border: none !important;
 }
 
 /* ugly search bar border on focus */
@@ -124,13 +132,13 @@ html[class~="dark"] .dark\:nx-text-red-200 {
 table {
   font-size: 0.9rem !important;
 }
-tbody {
+html[class~="dark"] tbody {
   background-color: #141518;
 }
 tr {
   background: none !important;
 }
-td, th {
+html[class~="dark"] td, th {
   border-color: #4b556369 !important;
 }
 
@@ -186,4 +194,16 @@ td, th {
 
 .nextra-sidebar-container .nextra-scrollbar li.active a {
   font-weight: 600 !important;
+}
+
+article.nextra-body-typesetting-article code {
+  border-style: solid !important;
+}
+
+article.nextra-body-typesetting-article pre code {
+  border-style: none !important;
+}
+
+html[class~="dark"] article.nextra-body-typesetting-article code {
+  border: none !important;
 }

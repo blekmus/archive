@@ -1,7 +1,7 @@
 const withNextra = require('nextra')({
   theme: 'nextra-theme-docs',
   themeConfig: './theme.config.tsx',
-  staticImage: true
+  staticImage: true,
 })
 
 module.exports = withNextra({
@@ -12,5 +12,14 @@ module.exports = withNextra({
         hostname: 'avatars.githubusercontent.com',
       },
     ],
+  },
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/docs',
+        permanent: true,
+      },
+    ]
   },
 })

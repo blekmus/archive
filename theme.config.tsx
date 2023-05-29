@@ -2,23 +2,30 @@ import { DocsThemeConfig } from "nextra-theme-docs";
 import { useRouter } from "next/router";
 
 const config: DocsThemeConfig = {
-  logo: (
-    <span style={{ color: "white" }}>
-      <b>Archive</b>
-    </span>
-  ),
+  logo: <b>Archive</b>,
   head: (
-    <script
-      lang="javascript"
-      dangerouslySetInnerHTML={{
-        __html: `if (!window.localStorage.getItem("theme_default")) {
+    <>
+      <script
+        lang="javascript"
+        dangerouslySetInnerHTML={{
+          __html: `if (!window.localStorage.getItem("theme_default")) {
       window.localStorage.setItem("theme", "dark");
       window.localStorage.setItem("theme_default", "dark");
       document.documentElement.classList.add("dark");
       document.documentElement.classList.remove("light");
     }`,
-      }}
-    />
+        }}
+      />
+
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta property="og:title" content="Archive" />
+      <meta
+        property="og:description"
+        content="A techy knowledge base for the easily forgetful"
+      />
+
+      <link rel="icon" href="/favicon.ico" sizes="any" />
+    </>
   ),
   feedback: {
     content: null,
@@ -34,7 +41,7 @@ const config: DocsThemeConfig = {
     const { route } = useRouter();
     if (route !== "/") {
       return {
-        titleTemplate: "%s – Archive",
+        titleTemplate: "%s - Archive",
       };
     }
   },
@@ -46,11 +53,13 @@ const config: DocsThemeConfig = {
       return <>{title}</>;
     },
     defaultMenuCollapseLevel: 1,
+    toggleButton: true,
   },
   footer: {
+    text: null,
     component: null,
   },
-  darkMode: false,
+  // darkMode: false,
 };
 
 export default config;
