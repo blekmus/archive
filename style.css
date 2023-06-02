@@ -207,3 +207,7 @@ article.nextra-body-typesetting-article pre code {
 html[class~="dark"] article.nextra-body-typesetting-article code {
   border: none !important;
 }
+
+article.nextra-body-typesetting-article p.nx-leading-7 {
+  line-height: 1.75rem !important;
+}

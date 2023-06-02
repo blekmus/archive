@@ -21,14 +21,14 @@ export function BlogIndex() {
         <Link href={page.route} style={{ color: "inherit", textDecoration: "none" }} className="block font-semibold mt-8 text-2xl">
           {page.meta?.title || page.frontMatter?.title || page.name}
         </Link>
-        <p className="opacity-80" style={{ marginTop: ".5rem" }}>
+        <p className="font-mono text-sm font-semibold text-slate-500 dark:text-slate-400" style={{ marginTop: ".5rem", lineHeight: "1.4rem" }}>
           {page.frontMatter?.description}{" "}
           <span className="inline-block">
             <Link className="nx-text-primary-600 no-underline hover:no-underline nx-decoration-from-font [text-underline-position:from-font]" href={page.route}>{"Read more →"}</Link>
           </span>
         </p>
         {page.frontMatter?.date ? (
-          <p className="opacity-50 text-sm">{page.frontMatter.date}</p>
+          <p className="font-mono text-sm opacity-50">{page.frontMatter.date}</p>
         ) : null}
       </div>
     );
