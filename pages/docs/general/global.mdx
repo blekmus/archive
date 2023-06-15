@@ -368,3 +368,11 @@ AllowedIPs = 0.0.0.0/0, ::/0
 ; after
 AllowedIPs = 0.0.0.0/0
 ```
+
+## Dolby Vision
+
+If you somehow find yourself with a Dolby Vision encoded video clip, but without a DV certified device. You can use mpv to color correct the video back to how it's supposed to look.
+
+```bash
+mpv --vo=gpu-next <video.mkv>
+```
