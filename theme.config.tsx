@@ -54,6 +54,7 @@ const config: DocsThemeConfig = {
     },
     defaultMenuCollapseLevel: 1,
     toggleButton: true,
+    autoCollapse: true,
   },
   footer: {
     text: null,
