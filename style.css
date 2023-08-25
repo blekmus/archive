@@ -211,3 +211,8 @@ html[class~="dark"] article.nextra-body-typesetting-article code {
 article.nextra-body-typesetting-article p.nx-leading-7 {
   line-height: 1.75rem !important;
 }
+
+.guide_page_title_description {
+  margin-top: .3rem;
+  line-height: 1.7rem !important;
+}
