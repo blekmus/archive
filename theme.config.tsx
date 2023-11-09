@@ -48,7 +48,6 @@ const config: DocsThemeConfig = {
     text: null,
     component: null,
   },
-  // darkMode: false,
 };
 
 export default config;
