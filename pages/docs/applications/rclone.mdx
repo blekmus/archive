@@ -32,6 +32,13 @@ import {Warning} from '@components/callouts'
     Concurrent transfers directly affect RAM. On top of that, if there's too much resource usage, rclone auto kills itself.
 </Warning>
 
+## Exclude
+
+``` bash
+# Exclude all files starting with ._ (mac)
+--exclude "._*"
+```
+
 ## Web UI
 
 Rclone comes prebuilt with an experimental web UI. Use the following command to run an instance of it.
