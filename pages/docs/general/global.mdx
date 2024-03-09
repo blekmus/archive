@@ -397,3 +397,14 @@ Tkinter needs to be installed using brew.
 brew install python-tk
 ```
 
+## Mono Framework
+
+On MacOS to remove the mono framework run this.
+
+```bash
+sudo rm -rf /Library/Frameworks/Mono.framework
+sudo pkgutil --forget com.xamarin.mono-MDK.pkg
+sudo rm /etc/paths.d/mono-commands
+```
+
+[Source1](https://gist.github.com/powerumc/e80bb475117582d7e842) [Source2](https://www.mono-project.com/docs/getting-started/install/mac/#uninstalling-mono-on-macos)
