@@ -1,0 +1,78 @@
+## Services
+
+### PHP Server
+
+This is a simple PHP server with Nginx as a reverse proxy. The PHP server is running on port 9000 and Nginx is running on port 8080. The PHP server is using the `php:8.2-fpm` image and the Nginx server is using the `nginx:latest` image. The PHP server is mounted to the `./html/` directory and the Nginx server is mounted to the `./nginx/conf.d/` directory.
+
+import { FileTree } from "nextra/components";
+
+<FileTree>
+  <FileTree.Folder name="php-server" defaultOpen>
+    <FileTree.File name="docker-compose.yml" />
+    <FileTree.Folder name="html" defaultOpen>
+      <FileTree.File name="index.php" />
+    </FileTree.Folder>
+    <FileTree.Folder name="nginx" defaultOpen>
+      <FileTree.Folder name="conf.d" defaultOpen>
+        <FileTree.File name="default.conf" />
+      </FileTree.Folder>
+    </FileTree.Folder>
+  </FileTree.Folder>
+</FileTree>
+
+```yml filename="docker-compose.yml"
+version: "3"
+name: php-server
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - "8080:80" # local:container
+    networks:
+      - internal
+    volumes:
+      - ./html/:/var/www/html/ # local:container
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
+  php:
+    image: php:8.2-fpm
+    networks:
+      - internal
+    volumes:
+      - ./html/:/var/www/html/
+```
+
+```nginx filename="nginx/conf.d/nginx.conf"
+server {
+    listen 0.0.0.0:80;
+    root /var/www/html;
+    location / {
+        index index.php index.html;
+    }
+    location ~ \.php$ {
+        include fastcgi_params;
+        fastcgi_pass php:9000;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root/$fastcgi_script_name;
+    }
+}
+```
+
+### MySQL Server
+
+This is a simple MySQL server running on port 3306. The MySQL server is mounted to the `./mysql/` directory.
+
+```yml filename="docker-compose.yml"
+version: "3"
+name: mysql-server
+services:
+  db:
+    image: mysql:8.0
+    ports:
+      - "3306:3306" # local:container
+    networks:
+      - internal
+    volumes:
+      - ./mysql/:/var/lib/mysql/ # local:container
+    environment:
+      MYSQL_ROOT_PASSWORD: root # set the root password
+```

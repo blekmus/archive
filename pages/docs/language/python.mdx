@@ -1,0 +1,23 @@
+## Virtual Environments
+
+### venv
+
+There are a few ways to create `venv` virtual environments.
+
+The easiest way is to use VSCode. In a Python file, click on the Python version in the bottom right. Then click on `Select Interpreter` then `Create New Virtual Environment`. This creates a new virtual environment in the `.venv` directory in the root of the project. Whenever you open a Python file in this project, VSCode will automatically activate the virtual environment. So the terminal will inherit it.
+
+You can also create a virtual environment using the terminal. Navigate to the root of the project and run:
+
+```bash
+python -m venv .venv
+```
+
+This creates a new virtual environment in the `.venv` directory in the root of the project. To activate it, run:
+
+```bash
+# to activate the virtual environment
+source .venv/bin/activate
+
+# to deactivate the virtual environment
+deactivate
+```

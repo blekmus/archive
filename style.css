@@ -9,7 +9,10 @@
 }
 
 /* code font family set to fire code */
-code, kbd, samp, pre {
+code,
+kbd,
+samp,
+pre {
   font-family: "Fira Code", "ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New", "monospace" !important;
 }
 
@@ -32,6 +35,7 @@ code, kbd, samp, pre {
 html[class~="dark"] .dark\:nx-text-slate-100 {
   color: #cadcec !important;
 }
+
 html[class~="dark"] .nextra-content {
   color: #cadcec !important;
 }
@@ -39,13 +43,14 @@ html[class~="dark"] .nextra-content {
 .dark .dark\:text-neutral-200 {
   color: #cadcec !important;
 }
+
 /* html[class~="dark"] body {
   color: #cadcec !important;
 } */
 
 /* remove anchor underlines */
 a.nx-underline {
- text-decoration-line: none !important; 
+  text-decoration-line: none !important;
 }
 
 a.nx-underline:hover {
@@ -68,7 +73,11 @@ html[class~="dark"] code {
 }
 
 /* ugly search bar border on focus */
-a:focus-visible, summary:focus-visible, button:focus-visible, input:focus-visible, [tabindex]:not([tabindex="-1"]):focus-visible {
+a:focus-visible,
+summary:focus-visible,
+button:focus-visible,
+input:focus-visible,
+[tabindex]:not([tabindex="-1"]):focus-visible {
   --tw-ring-offset-shadow: none !important;
   --tw-ring-shadow: none !important;
 }
@@ -76,6 +85,16 @@ a:focus-visible, summary:focus-visible, button:focus-visible, input:focus-visibl
 /* codebox background */
 html[class~="dark"] .dark\:nx-bg-primary-300\/10 {
   background-color: #141518 !important;
+}
+
+.nextra-code-block > div:first-child {
+  font-size: .85rem;
+  color: #768aab;
+}
+
+html[class~="dark"] .nextra-code-block > div:first-child {
+  background-color: #1a1b1f !important;
+  color: rgb(126 132 145);
 }
 
 /* codebox styles */
@@ -93,7 +112,7 @@ pre {
 }
 
 /* code box with title */
-[data-rehype-pretty-code-fragment] > div {
+[data-rehype-pretty-code-fragment]>div {
   border-bottom: solid 1px #4b556369;
   font-weight: bold;
   color: #cadcec !important;
@@ -132,13 +151,17 @@ html[class~="dark"] .dark\:nx-text-red-200 {
 table {
   font-size: 0.9rem !important;
 }
+
 html[class~="dark"] tbody {
   background-color: #141518;
 }
+
 tr {
   background: none !important;
 }
-html[class~="dark"] td, th {
+
+html[class~="dark"] td,
+th {
   border-color: #4b556369 !important;
 }
 
@@ -152,6 +175,7 @@ html[class~="dark"] td, th {
   border-color: rgb(229 231 235/1);
   margin-bottom: 3rem;
 }
+
 .steps-container h3 {
   counter-increment: step;
 }
@@ -182,6 +206,7 @@ html[class~="dark"] td, th {
 .dark .steps-container {
   border-color: #2e2e2e;
 }
+
 .dark .steps-container h3:before {
   color: #999;
   border: 4px solid rgba(17, 17, 17, var(--tw-bg-opacity));
