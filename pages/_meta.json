@@ -3,6 +3,10 @@
     "title": "Docs",
     "type": "page"
   },
+  "projects": {
+    "title": "Projects",
+    "type": "page"
+  },
   "guides": {
     "title": "Guides",
     "type": "page",

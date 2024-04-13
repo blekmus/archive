@@ -1,0 +1,34 @@
+{
+  "index": {
+    "title": "All",
+    "theme": {
+      "pagination": false,
+      "toc": false
+    }
+  },
+  "-- Pages --": {
+    "type": "separator",
+    "title": "Categories"
+  },
+  "web": {
+    "title": "Web",
+    "theme": {
+      "pagination": false,
+      "toc": false
+    }
+  },
+  "cli": {
+    "title": "CLI",
+    "theme": {
+      "pagination": false,
+      "toc": false
+    }
+  },
+  "apps": {
+    "title": "Apps",
+    "theme": {
+      "pagination": false,
+      "toc": false
+    }
+  }
+}

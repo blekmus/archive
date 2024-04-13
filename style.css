@@ -87,12 +87,12 @@ html[class~="dark"] .dark\:nx-bg-primary-300\/10 {
   background-color: #141518 !important;
 }
 
-.nextra-code-block > div:first-child {
+.nextra-code-block>div:first-child {
   font-size: .85rem;
   color: #768aab;
 }
 
-html[class~="dark"] .nextra-code-block > div:first-child {
+html[class~="dark"] .nextra-code-block>div:first-child {
   background-color: #1a1b1f !important;
   color: rgb(126 132 145);
 }
@@ -240,4 +240,18 @@ article.nextra-body-typesetting-article p.nx-leading-7 {
 .guide_page_title_description {
   margin-top: .3rem;
   line-height: 1.7rem !important;
+}
+
+
+/* projects page images */
+.img-container {
+  padding: 8px;
+  border: rgb(38 38 38) 1px solid;
+  border-radius: 10px;
+  margin-top: 10px;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(255 255 255 / 0.06)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");
+}
+
+.img-container img {
+  border-radius: 10px;
 }
