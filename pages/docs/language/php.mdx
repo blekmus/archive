@@ -1,0 +1,12 @@
+## Console log
+
+This function prints to the terminal in a vanilla php website
+
+```php
+function console_log($message)
+{
+    $STDERR = fopen("php://stderr", "w");
+    fwrite($STDERR, "\n" . $message . "\n\n");
+    fclose($STDERR);
+}
+```
