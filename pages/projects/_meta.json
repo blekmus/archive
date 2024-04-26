@@ -17,15 +17,15 @@
       "toc": false
     }
   },
-  "cli": {
-    "title": "CLI",
+  "apps": {
+    "title": "Apps",
     "theme": {
       "pagination": false,
       "toc": false
     }
   },
-  "apps": {
-    "title": "Apps",
+  "services": {
+    "title": "Services",
     "theme": {
       "pagination": false,
       "toc": false
