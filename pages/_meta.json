@@ -6,12 +6,5 @@
   "projects": {
     "title": "Projects",
     "type": "page"
-  },
-  "guides": {
-    "title": "Guides",
-    "type": "page",
-    "theme": {
-      "typesetting": "article"
-    }
   }
 }
