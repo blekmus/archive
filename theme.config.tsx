@@ -11,8 +11,12 @@ const config: DocsThemeConfig = {
         property="og:description"
         content="A techy knowledge base for the easily forgetful"
       />
-
       <link rel="icon" href="/favicon.ico" sizes="any" />
+      <script
+        defer
+        src="https://analytics.thelonelylands.com/harmless_mkay"
+        data-website-id="c8d7d551-a6a2-4a86-81d5-9d243616af19"
+      ></script>
     </>
   ),
   feedback: {
