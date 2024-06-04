@@ -1,10 +1,10 @@
-import { Warning, Error } from '@components/callouts'
+import { Warning, Error } from "@components/callouts";
 
 ## Setup
 
 Install MariaDB and run the initial setup script. Default port is `3306`.
 
-``` bash
+```bash
 sudo apt update
 sudo apt install mariadb-server
 sudo mysql_secure_installation
@@ -14,21 +14,44 @@ sudo mysql_secure_installation
 
 ### Creating
 
-``` sql
--- create db
-CREATE DATABASE <dbname>;
+import { Tab, Tabs } from "nextra-theme-docs";
 
--- create user
-CREATE USER '<username>'@localhost IDENTIFIED BY '<password>';
+<Tabs items={["MariaDB", "PostgreSQL"]}>
+  <Tab>
+    ``` sql
+    -- create db
+    CREATE DATABASE <db>;
 
--- grant privileges
-GRANT ALL PRIVILEGES ON <dbname>.* TO '<username>'@localhost;
+    -- create user
+    CREATE USER '<user>'@localhost IDENTIFIED BY '<pass>';
 
--- save grant changes
-FLUSH PRIVILEGES;
-```
+    -- grant privileges
+    GRANT ALL PRIVILEGES ON <db>.* TO '<username>'@localhost;
 
-``` sql
+    -- save grant changes
+    FLUSH PRIVILEGES;
+    ```
+
+  </Tab>
+  <Tab>
+    ``` sql
+    -- create db
+    CREATE DATABASE <db>;
+
+    -- create user
+    CREATE USER <user> WITH PASSWORD '<pass>';
+
+    -- grant privileges
+    GRANT ALL PRIVILEGES ON DATABASE <db> TO <user>;
+
+    -- changes are automatically committed
+
+    ```
+  </Tab>
+</Tabs>
+
+
+```sql
 -- select db
 USE <dbname>;
 
@@ -43,7 +66,7 @@ CREATE table <table-name> (
 
 ### Deleting
 
-``` sql
+```sql
 -- drop user
 DROP USER '<user-name>'@localhost;
 
@@ -53,7 +76,7 @@ DROP DATABASE <dbname>;
 
 ### Displaying
 
-``` sql
+```sql
 -- display users
 SELECT User FROM mysql.user;
 
@@ -65,12 +88,12 @@ USE <dbname>;
 SHOW TABLES;
 ```
 
-``` sql
+```sql
 -- display privileges of user
 SHOW GRANTS FOR '<username>'@localhost;
 ```
 
-``` sql
+```sql
 -- display table columns
 DESC <dbname>.<table-name>;
 SHOW COLUMNS FROM <dbname>.<table-name>;
@@ -82,7 +105,7 @@ SHOW COLUMNS FROM <table-name>;
 
 ### Display Formats
 
-``` sql
+```sql
 -- display vertically
 SHOW DATABASES \G;
 SELECT col FROM db \G;
@@ -90,7 +113,7 @@ SELECT col FROM db \G;
 
 ### Altering
 
-``` sql
+```sql
 -- alter column type
 -- doesn't replace unless values in colums are compatible
 use <dbname>;
@@ -112,7 +135,7 @@ This is basically copying the base sql directory after stopping sql.
 
 To backup;
 
-``` bash
+```bash
 # scripts
 mysqldump -u <username> -p"<pass>" <dbname> > /path/to/file.sql
 
@@ -124,12 +147,14 @@ mysqldump -u root -p --all-databases > ./mariadb.dump
 ```
 
 <Warning>
-  Try not to use the root user as much as possible. Except when making full db backups. Use a user who has deligated access to the database that is to be backed up.
+  Try not to use the root user as much as possible. Except when making full db
+  backups. Use a user who has deligated access to the database that is to be
+  backed up.
 </Warning>
 
 To import;
 
-``` bash
+```bash
 # first create db in mysql
 # then import data to it
 
@@ -139,6 +164,32 @@ mysql <dbname> < /path/to/file.sql
 ## MongoDB
 
 <Error>
-  If you get an error like `pymongo.errors.ServerSelectionTimeoutError`. Check if the current ip address is allowed in the dashboard. [Source](https://pythonexamples.org/pymongo-errors-serverselectiontimeouterror/)
+  If you get an error like `pymongo.errors.ServerSelectionTimeoutError`. Check
+  if the current ip address is allowed in the dashboard.
+  [Source](https://pythonexamples.org/pymongo-errors-serverselectiontimeouterror/)
 </Error>
 
+## PostgreSQL
+
+### Setting Up
+
+First, there's a change that's needed in the config file to enable password auth for users. To do that we need to first find out where the config file is.
+
+```bash
+sudo -u postgres psql
+> SHOW config_file
+```
+
+After that edit that file and change the following line from `peer` to `md5`.
+
+```
+local     all         all            peer
+                                    ↓↓↓↓↓
+local     all         all            md5
+```
+
+Now restart Postgres.
+
+```bash
+sudo service postgresql restart
+```
