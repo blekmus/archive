@@ -28,3 +28,15 @@ Basically, 99% of the time you're better off figuring out how to tell your TV to
 If the remote is working but isn't syncing with the TV, try this;
 
 Long press `OK+1` or `OK+2` or `OK+3` or `OK+6`. If this doesn't work, contact `1777`
+
+## Sony a6000 Camera
+
+How to access video recordings on the camera in MacOS
+- Connect the SDCard to the computer.
+- You'll see DCIM, MP_ROOT and private directories.
+- In the private directory you'll see M4ROOT and SONY directories, as well as an AVCHD package.
+- Right-click the AVCHD package and click Show package contents.
+- You'll see a BDMV package: right-click and select Show package contents again.
+- You'll now see CLIPINF, PLAYLIST and STREAM directories, as well as INDEX.BDM and MOVIEOBJ.BDM files.
+- Double-clicking on either of the files will produce a new window with a list of the streams, and thumbnails; but I wasn't able to do anything with those.
+- In the STREAMS directory you'll find a series of .MTS files; these are your videos, which I was able to play with VLC.
