@@ -17,6 +17,13 @@
       "toc": false
     }
   },
+  "cli": {
+    "title": "CLI",
+    "theme": {
+      "pagination": false,
+      "toc": false
+    }
+  },
   "apps": {
     "title": "Apps",
     "theme": {
@@ -24,8 +31,8 @@
       "toc": false
     }
   },
-  "services": {
-    "title": "Services",
+  "misc": {
+    "title": "Misc",
     "theme": {
       "pagination": false,
       "toc": false
