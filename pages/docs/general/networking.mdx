@@ -203,5 +203,4 @@ If the file's permissions aren't the issue, there can be several other causes. Y
 
 Another issue could be (but this is quite rare) is that the ssh-add binary has the setuid bit set, causing it to run as a different user, and hence have no right to read your private key. Use `ls -lh $(which ssh-add)` to inspect this. If it returns an agent instance run by a different user. Kill it running `ssh-agent -k` after logging in as that user.
 
-[Source](https://superuser.com/questions/642972/why-am-i-getting-permission-denied-when-running-ssh-add)import { config } from "process";
-
+[Source](https://superuser.com/questions/642972/why-am-i-getting-permission-denied-when-running-ssh-add)
