@@ -66,7 +66,82 @@ curl api.ipify.org # ipv4
 curl ident.me # ipv6
 ```
 
-## SSH Port Forwarding
+## SSH
+
+### Hardened config
+
+```bash
+# Include /etc/ssh/sshd_config.d/*.conf
+
+# Listen on
+Port 7777
+
+# Protocol
+Protocol 2
+
+# HostKeys
+HostKey /etc/ssh/ssh_host_ed25519_key
+HostKey /etc/ssh/ssh_host_rsa_key
+HostKey /etc/ssh/ssh_host_ecdsa_key
+
+# Algorithms
+KexAlgorithms curve25519-sha256@libssh.org,ecdh-sha2-nistp521,ecdh-sha2-nistp384,ecdh-sha2-nistp256,diffie-hellman-group-exchange-sha256
+Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr
+MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,umac-128@openssh.com
+
+# Logging
+LogLevel VERBOSE
+
+# Sessions
+MaxAuthTries 3
+MaxSessions 3
+ClientAliveInterval 60
+ClientAliveCountMax 3
+
+# Authentication
+LoginGraceTime 2m
+AuthenticationMethods publickey
+PubkeyAuthentication yes
+UsePAM yes
+PermitRootLogin no
+
+# Disable password login
+PermitEmptyPasswords no
+PasswordAuthentication no
+KbdInteractiveAuthentication no
+
+# Disable port forwarding
+AllowTcpForwarding no
+AllowStreamLocalForwarding no
+GatewayPorts no
+PermitTunnel no
+
+# Disable X11 forwarding as X11 is very insecure
+X11Forwarding no
+
+# Verify hostname matches IP
+UseDNS yes
+
+# Ignore .rhosts and .shosts
+IgnoreRhosts yes
+
+# Don't allow .rhosts or /etc/hosts.equiv
+HostbasedAuthentication no
+
+# Disable user environment
+PermitUserEnvironment no
+
+# Other settings
+PrintMotd no
+Compression no
+TCPKeepAlive no
+AllowAgentForwarding no
+
+# Override default (this location might be different)
+Subsystem sftp /usr/lib/openssh/sftp-server -f AUTHPRIV -l INFO
+```
+
+### Port Forwarding
 
 ```bash
 ssh -N -L 8888:127.0.0.1:80 user@server.com
@@ -128,4 +203,5 @@ If the file's permissions aren't the issue, there can be several other causes. Y
 
 Another issue could be (but this is quite rare) is that the ssh-add binary has the setuid bit set, causing it to run as a different user, and hence have no right to read your private key. Use `ls -lh $(which ssh-add)` to inspect this. If it returns an agent instance run by a different user. Kill it running `ssh-agent -k` after logging in as that user.
 
-[Source](https://superuser.com/questions/642972/why-am-i-getting-permission-denied-when-running-ssh-add)
+[Source](https://superuser.com/questions/642972/why-am-i-getting-permission-denied-when-running-ssh-add)import { config } from "process";
+
