@@ -1,4 +1,70 @@
-## Services
+## Guides
+
+### Docker host access from container
+
+First you need this line in your service
+
+```yml
+extra_hosts:
+	- host.docker.internal:host-gateway
+```
+
+Second, anywhere you use the URI needs to have "host.docker.internal" rather than "localhost" or the IP.
+
+Third, ufw needs to have access to the network subnet. To do this first check which network was created by compose for this using `docker network ls`. Then use `docker network inspect <name>`. After this take the subnet under IPAM and run the following. The host port is the port you're trying to forward from the localhost to the docker container.
+
+```bash
+sudo ufw allow from <subnet-w-cidr> to any port <host-port>
+```
+
+### Expose container only via Tailscale
+
+Because Docker deals with iptables straight rather than going through UFW, any firewall rules set wouldn't affect a docker mapped port. To ensure your Docker container is only accessible via Tailscale and not via the host's IP address, you can configure a Docker container to only listen on the Tailscale network interface.
+
+**Find the Tailscale IP Address** <br />
+On the Docker host, run `tailscale ip` to get the Tailscale IP address (e.g., `100.x.x.x`).
+
+**Modify Docker Daemon Configuration** <br />
+Create or edit the Docker daemon configuration file, usually located at `/etc/docker/daemon.json`.
+Add the following configuration to bind Docker to the Tailscale network interface:
+
+```json
+{ "hosts": ["fd://", "tcp://100.x.x.x:2375"] }
+```
+
+This binds Docker to the Tailscale IP on port `2375` (you can use any available port).
+
+**Override default Configuration in Systemd** <br />
+Edit the Docker service configuration file and remove the hosts flag:
+
+```bash
+sudo systemctl edit docker
+```
+
+```bash
+### Anything between...
+[Service]
+ExecStart=/usr/bin/dockerd --containerd=/run/containerd/containerd.sock
+### Lines below...
+```
+
+Restart the Docker daemon to apply the changes
+
+```bash
+sudo systemctl restart docker
+```
+
+**Run Docker Container Bound to Tailscale Interface** <br />
+When you run your Docker container, bind it to the Tailscale IP and the desired port (e.g., `5001`):
+
+```bash
+docker run -p 100.x.x.x:5001:5001
+ your-docker-image
+```
+
+Now configure the firewall. Unless the default rule is `deny (incoming)` block it using `sudo ufw deny 5001`
+
+## Compose Files
 
 ### PHP Server
 

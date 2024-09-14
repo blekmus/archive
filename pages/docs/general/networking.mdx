@@ -170,6 +170,31 @@ UDP port `123` is allowed for both incoming and outgoing traffic to NTP work. Ad
 !!! error ""
 If `Servname not supported for ai_socktype and ntp` is displayed when starting NTP. The service file is probably fucked. Check out how to replace it [here](#service-ports). More info [here](https://www.ducea.com/2006/09/11/error-servname-not-supported-for-ai_socktype/).
 
+
+## BunkerWeb ModSecurity Tuning
+
+If a service is being blocked by modsecurity core rule set, you'll need to add an exception.
+First check the specific url that's being blocked. You can do this through the network tab in the browser or the BunkerWeb docker logs. It should look like this;
+
+```yml
+bunkerweb | [warn] ModSecurity: Warning. Matched "Operator `Rx' ... [id "99999"] ... request: "POST /api/graphql"
+bunkerweb | [error] ModSecurity: Access denied with code 403 (phase 2). Matched ... [id "949110"]
+```
+
+First a rule by the id `99999` is matched against a request that was made to the website. This is marked as a warning by modsecurity. After that a new rule `949110` is created on the fly by the server against the client IP to block it access to `/api/graphql`.
+
+So the rule we need to exclude is `99999`. Sometimes it might be one rule or it might be a chain with multiple rules that need to be excluded. 
+
+Here I'm excluding rules with id `99999` and `88888` for the domain `example.com` for the path `/api/graphql` by creating a new rule with id `1000100` and naming it graphql. 
+
+```yml
+environment:
+	- example.com_CUSTOM_CONF_MODSEC_CRS_graphql=
+	SecRule REQUEST_FILENAME "^/api/graphql" "id:1000100,phase:1,pass,nolog,ctl:ruleRemoveById=99999,ctl:ruleRemoveById=88888"
+```
+
+! To avoid conflicts, use rule ids past 1,000,000. Only 1-99,999 are reserved for CRS but this ensures there won't be any conflicts any time soon.
+
 ## Ghost
 
 By default the port is set to `2369`. If you visit that port, it'd show nothing. The correct port is `2368`
@@ -204,3 +229,4 @@ If the file's permissions aren't the issue, there can be several other causes. Y
 Another issue could be (but this is quite rare) is that the ssh-add binary has the setuid bit set, causing it to run as a different user, and hence have no right to read your private key. Use `ls -lh $(which ssh-add)` to inspect this. If it returns an agent instance run by a different user. Kill it running `ssh-agent -k` after logging in as that user.
 
 [Source](https://superuser.com/questions/642972/why-am-i-getting-permission-denied-when-running-ssh-add)
+
