@@ -14,8 +14,8 @@ const config: DocsThemeConfig = {
       <link rel="icon" href="/favicon.ico" sizes="any" />
       <script
         defer
-        src="https://analytics.thelonelylands.com/harmless_mkay"
-        data-website-id="c8d7d551-a6a2-4a86-81d5-9d243616af19"
+        src="https://analytics.dinil.dev/harmless_metrics_mkay"
+        data-website-id="175f912f-7e77-4355-87a0-f4732595bc50"
       ></script>
     </>
   ),
