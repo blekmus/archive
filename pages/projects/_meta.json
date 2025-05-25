@@ -30,12 +30,5 @@
       "pagination": false,
       "toc": false
     }
-  },
-  "misc": {
-    "title": "Misc",
-    "theme": {
-      "pagination": false,
-      "toc": false
-    }
   }
 }

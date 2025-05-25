@@ -1,37 +1,17 @@
+import projects from "../../projects.ts"
+
 # Web
 
-### [Ace Academy](https://aceacademy.lk)
-<p>Online learning platform for students in Sri Lanka.</p>
-<div class="img-container">![aceacademy](./covers/ace.png)</div>
-
-### [Commicasa](https://git.dinil.dev/)
-<p>Self hosted git host for personal code.</p>
-<div class="img-container">![commicasa](./covers/commicasa.png)</div>
-
-### [The Lonely Lands](https://github.com/blekmus/next-thelonelylands)
-<p>A collection of thoughts, musings, and memories written down over the years by me.</p>
-<div class="img-container">![lonelylands](./covers/lonelylands.png)</div>
-
-### [AniTracker](https://github.com/blekmus/anime-tracker-react)
-<p>A reimagined front-end for Anilist.</p>
-<div class="img-container">![anitracker](./covers/anitracker.png)</div>
-
-### [AniStats](https://github.com/blekmus/next-anistats)
-<p>Calculate real time Anilist stats.</p>
-<div class="img-container">![anistats](./covers/anistats.png)</div>
-
-### [Embrace](https://embrace.aceacademy.lk)
-<p>Site featuring a webinar series made for Ace Academy.</p>
-<div class="img-container">![embrace](./covers/embrace.png)</div>
-
-### [Vapor Stage](https://github.com/blekmus/vaporstage)
-<p>Redesign of Style Stage with a minimal vaporwave aesthetic.</p>
-<div class="img-container">![vaporwave](./covers/vaporstage.png)</div>
-
-### [Paperdia](https://aceacademy.lk/papers)
-<p>Student run examination past paper library.</p>
-<div class="img-container">![paperdia](./covers/paperdia.png)</div>
-
-### [AniNotes](https://github.com/blekmus/slim-aninotes)
-<p>View and edit Anilist notes in one place.</p>
-<div class="img-container">![aninotes](./covers/aninotes.png)</div>
+{projects.filter((project) => (project.tag === 'web')).map((project) => (
+  <div key={project.title}>
+    <h3>
+      <a href={project.link} target="_blank" rel="noopener noreferrer">
+        {project.title}
+      </a>
+    </h3>
+    <p style={{marginTop: 0}}>{project.desc}</p>
+    <div className="img-container">
+      <img src={project.imgUrl} alt={project.title} />
+    </div>
+  </div>
+))}
